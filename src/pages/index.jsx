@@ -17,6 +17,7 @@ import {
   MDBContainer,
   MDBRow,
 } from "mdb-react-ui-kit"
+import UserListItem from "../components/userListItem"
 
 const pageStyles = {
   color: "#232129",
@@ -42,7 +43,9 @@ const rowHeadingStyle = {
 const IndexPage = () => (
   <Layout>
     <MDBContainer>
-      <h1 style={headingStyles}>Preplesavanje Petek 24.2</h1>
+      <h1 className="text-center" style={headingStyles}>
+        Preplesavanje Petek 24.2
+      </h1>
       <div className="w-100 d-flex justify-content-center">
         <table
           className="border-top border-bottom border-2 border-dark"
@@ -69,6 +72,14 @@ const IndexPage = () => (
         </table>
       </div>
 
+      <section className="mt-5">
+        <h2 className="mb-0 border-dark border-2 border d-inline p-1">
+          PRIJAVLJENI
+        </h2>
+        <div className="d-flex">
+          <UserListItem imgSrc="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+        </div>
+      </section>
       <hr />
     </MDBContainer>
   </Layout>
