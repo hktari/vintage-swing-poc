@@ -10,7 +10,13 @@ import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 import Links from "../components/links"
 
-import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit"
+import {
+  MDBCarousel,
+  MDBCarouselItem,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+} from "mdb-react-ui-kit"
 
 const pageStyles = {
   color: "#232129",
@@ -26,44 +32,56 @@ const headingAccentStyles = {
   color: "#663399",
 }
 
+const infoRowHeader = {
+  fontSize: "2em",
+}
+
 const IndexPage = () => (
   <Layout>
-    <h1 style={headingStyles}>
-      Congratulations
-      <br />
-      <span style={headingAccentStyles}>
-        — you just integrated MDB React with Gatsby! 🎉🎉🎉
-      </span>
-    </h1>
-    <MDBCarousel showIndicators showControls fade>
-      <MDBCarouselItem
-        className="w-100 d-block"
-        itemId={1}
-        src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
-        alt="..."
-      >
-        <h5>First slide label</h5>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </MDBCarouselItem>
-      <MDBCarouselItem
-        className="w-100 d-block"
-        itemId={2}
-        src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
-        alt="..."
-      >
-        <h5>Second slide label</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </MDBCarouselItem>
-      <MDBCarouselItem
-        className="w-100 d-block"
-        itemId={3}
-        src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-        alt="..."
-      >
-        <h5>Third slide label</h5>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </MDBCarouselItem>
-    </MDBCarousel>
+    <MDBContainer>
+      <h1 style={headingStyles}>
+        Preplesavanje Petek 24.2
+        <br />
+        <span style={headingAccentStyles}>
+          — you just integrated MDB React with Gatsby! 🎉🎉🎉
+        </span>
+      </h1>
+      <hr />
+      <MDBRow className="border-top border-2 border-dark p-2">
+        <MDBCol>
+          <h3 className="text-italic" style={infoRowHeader}>
+            KJE ?
+          </h3>
+        </MDBCol>
+        <MDBCol>
+          <div className="fs-2">SWING PLAC LJ</div>
+        </MDBCol>
+      </MDBRow>
+      <MDBRow>
+        <MDBCol>
+          <h3 className="text-bold" style={infoRowHeader}>
+            KDAJ ?
+          </h3>
+        </MDBCol>
+        <MDBCol>
+          <div className="fs-2">20:00</div>
+        </MDBCol>
+      </MDBRow>
+      <MDBRow>
+        <MDBCol>
+          <h3 className="text-bold" style={infoRowHeader}>
+            CENA{" "}
+          </h3>
+        </MDBCol>
+        <MDBCol>
+          <div className="fs-2">7€ | 12€ po 21:00</div>
+        </MDBCol>
+      </MDBRow>
+
+      <hr />
+
+    
+    </MDBContainer>
   </Layout>
 )
 
