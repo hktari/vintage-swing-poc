@@ -25,62 +25,51 @@ const pageStyles = {
 }
 const headingStyles = {
   marginTop: 0,
-  marginBottom: 64,
+  marginBottom: 32,
   maxWidth: 1080,
 }
-const headingAccentStyles = {
-  color: "#663399",
+
+const infoTableStyle = {
+  borderCollapse: "seperate",
+  borderSpacing: "50px 50px",
 }
 
-const infoRowHeader = {
-  fontSize: "2em",
+const rowHeadingStyle = {
+  fontWeight: 600,
+  padding: "8px 16px",
 }
 
 const IndexPage = () => (
   <Layout>
     <MDBContainer>
-      <h1 style={headingStyles}>
-        Preplesavanje Petek 24.2
-        <br />
-        <span style={headingAccentStyles}>
-          — you just integrated MDB React with Gatsby! 🎉🎉🎉
-        </span>
-      </h1>
-      <hr />
-      <MDBRow className="border-top border-2 border-dark p-2">
-        <MDBCol>
-          <h3 className="text-italic" style={infoRowHeader}>
-            KJE ?
-          </h3>
-        </MDBCol>
-        <MDBCol>
-          <div className="fs-2">SWING PLAC LJ</div>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol>
-          <h3 className="text-bold" style={infoRowHeader}>
-            KDAJ ?
-          </h3>
-        </MDBCol>
-        <MDBCol>
-          <div className="fs-2">20:00</div>
-        </MDBCol>
-      </MDBRow>
-      <MDBRow>
-        <MDBCol>
-          <h3 className="text-bold" style={infoRowHeader}>
-            CENA{" "}
-          </h3>
-        </MDBCol>
-        <MDBCol>
-          <div className="fs-2">7€ | 12€ po 21:00</div>
-        </MDBCol>
-      </MDBRow>
+      <h1 style={headingStyles}>Preplesavanje Petek 24.2</h1>
+      <div className="w-100 d-flex justify-content-center">
+        <table
+          className="border-top border-bottom border-2 border-dark"
+          style={infoTableStyle}
+        >
+          <tr>
+            <td style={rowHeadingStyle}>
+              <h3 className="mb-0"> KJE ?</h3>
+            </td>
+            <td className="fs-4">SWING PLAC LJ</td>
+          </tr>
+          <tr>
+            <td style={rowHeadingStyle}>
+              <h3 className="mb-0">KDAJ ?</h3>{" "}
+            </td>
+            <td className="fs-4">20:00</td>
+          </tr>
+          <tr>
+            <td style={rowHeadingStyle}>
+              <h3 className="mb-0">CENA</h3>
+            </td>
+            <td className="fs-4">7€ | 12€ po 21:00</td>
+          </tr>
+        </table>
+      </div>
 
       <hr />
-
-    
     </MDBContainer>
   </Layout>
 )
