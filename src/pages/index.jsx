@@ -76,9 +76,15 @@ const IndexPage = () => (
         <h2 className="mb-0 border-dark border-2 border d-inline p-1">
           PRIJAVLJENI
         </h2>
-        <div className="">
+        <div className="ms-4 row">
+          <div className="col ps-0">{/* here is image */}</div>
+          <div className="col fw-bold fs-4 text-center">IME</div>
+          <div className="col fw-bold fs-4 text-center">NIVO</div>
+          <div className="col fw-bold fs-4 text-center">STANJE</div>
+        </div>
+        <div className="ms-4 mt-3">
           <UserListItem
-            imgSrc="https://plus.unsplash.com/premium_photo-1683121769247-7824fdc324de?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            imgSrc="https://plus.unsplash.com/premium_photo-1677368597077-009727e906db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"
             name={"Živa"}
             status={"išče prevoz"}
             level={"napredna"}
@@ -88,12 +94,6 @@ const IndexPage = () => (
             name={"Luka"}
             status={"nov uporabnik"}
             level={"začetnik"}
-          />
-          <UserListItem
-            imgSrc="https://plus.unsplash.com/premium_photo-1683121769247-7824fdc324de?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            name={"Živa"}
-            status={"išče prevoz"}
-            level={"napredna"}
           />
         </div>
       </section>
