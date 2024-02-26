@@ -59,24 +59,30 @@ const IndexPage = () => (
           className="border-top border-bottom border-2 border-dark"
           style={infoTableStyle}
         >
-          <tr>
-            <td style={rowHeadingStyle}>
-              <h3 className="mb-0"> KJE ?</h3>
-            </td>
-            <td className="fs-4">SWING PLAC LJ</td>
-          </tr>
-          <tr>
-            <td style={rowHeadingStyle}>
-              <h3 className="mb-0">KDAJ ?</h3>{" "}
-            </td>
-            <td className="fs-4">20:00</td>
-          </tr>
-          <tr>
-            <td style={rowHeadingStyle}>
-              <h3 className="mb-0">CENA</h3>
-            </td>
-            <td className="fs-4">7€ | 12€ po 21:00</td>
-          </tr>
+          <thead>
+            <tr>
+              <td style={rowHeadingStyle}>
+                <h3 className="mb-0"> KJE ?</h3>
+              </td>
+              <td style={rowHeadingStyle}>
+                <h3 className="mb-0">KDAJ ?</h3>{" "}
+              </td>
+              <td style={rowHeadingStyle}>
+                <h3 className="mb-0">CENA</h3>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="fs-4">SWING PLAC LJ</td>
+            </tr>
+            <tr>
+              <td className="fs-4">20:00</td>
+            </tr>
+            <tr>
+              <td className="fs-4">7€ | 12€ po 21:00</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
@@ -120,7 +126,7 @@ const IndexPage = () => (
         </div>
 
         <div className="text-center mt-4">
-         <SignUpModal/>
+          <SignUpModal />
         </div>
       </section>
 
