@@ -19,6 +19,8 @@ import {
 } from "mdb-react-ui-kit"
 import UserListItem from "../components/user/userListItem"
 import UserCoupleListItem from "../components/user/userCoupleListItem"
+import { textCellClassNames, textCellStyle } from "../components/user/common"
+import TextCell from "../components/textCell"
 
 const pageStyles = {
   color: "#232129",
@@ -135,14 +137,25 @@ const IndexPage = () => (
               <i class="fa-solid fa-phone"></i>
             </button>
           </div>
-          <div className="col">MARKO</div>
           <div className="col">
-            17:00 <span className="d-block">CELJE</span>
+            <TextCell>MARKO</TextCell>
           </div>
           <div className="col">
-            00:00 <span className="d-block">CELJE</span>
+            <TextCell>
+              17:00
+              <br />
+              CELJE
+            </TextCell>
           </div>
-          <div className="col">2</div>
+          <div className="col">
+            <TextCell>
+              00:00 <br />
+              CELJE
+            </TextCell>
+          </div>
+          <div className="col">
+            <TextCell>2</TextCell>
+          </div>
         </div>
       </section>
     </MDBContainer>

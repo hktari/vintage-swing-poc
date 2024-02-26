@@ -1,6 +1,6 @@
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import React from "react"
-import { textCellClassNames, textCellStyle } from "./common"
+import TextCell from "../textCell"
 
 const UserListItem = ({ imgSrc, name, level, status }) => (
   <div className="row my-2 border border-2 border-dark rounded">
@@ -15,19 +15,13 @@ const UserListItem = ({ imgSrc, name, level, status }) => (
     </div>
 
     <div className="col-2">
-      <div className={textCellClassNames} style={textCellStyle}>
-        <span>{name}</span>
-      </div>
+      <TextCell>{name}</TextCell>
     </div>
     <div className="col-3">
-      <div className={textCellClassNames} style={textCellStyle}>
-        {level}
-      </div>
+      <TextCell>{level}</TextCell>
     </div>
     <div className="col-3">
-      <div className={textCellClassNames} style={textCellStyle}>
-        {status}
-      </div>
+      <TextCell>{status}</TextCell>
     </div>
   </div>
 )

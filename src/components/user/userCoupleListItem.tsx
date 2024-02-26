@@ -1,6 +1,6 @@
 import React from "react"
 import User from "../../interface/User"
-import { textCellClassNames, textCellStyle } from "./common"
+import TextCell from "../textCell"
 
 type Props = {
   firstUser: User
@@ -37,22 +37,20 @@ const UserCoupleListItem = ({ firstUser, secondUser, status }: Props) => {
       </div>
 
       <div className="col-2">
-        <div className={textCellClassNames} style={textCellStyle}>
-          <span>
+        <TextCell>
+          <>
             {" "}
             {firstUser.name}
             <br />
             in
             <br />
             {secondUser.name}
-          </span>
-        </div>
+          </>
+        </TextCell>
       </div>
       <div className="col-3">{/* level */}</div>
       <div className="col-3">
-        <div className={textCellClassNames} style={textCellStyle}>
-          {status}
-        </div>
+        <TextCell>{status}</TextCell>
       </div>
     </div>
   )
