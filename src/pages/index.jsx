@@ -17,7 +17,8 @@ import {
   MDBContainer,
   MDBRow,
 } from "mdb-react-ui-kit"
-import UserListItem from "../components/userListItem"
+import UserListItem from "../components/user/userListItem"
+import UserCoupleListItem from "../components/user/userCoupleListItem"
 
 const pageStyles = {
   color: "#232129",
@@ -79,10 +80,10 @@ const IndexPage = () => (
       <section className="mt-5">
         <HeadingTwo>PRIJAVLJENI</HeadingTwo>
         <div className="mt-4 ms-4 row">
-          <div className="col ps-0">{/* here is image */}</div>
-          <div className="col fw-bold fs-4 text-center">IME</div>
-          <div className="col fw-bold fs-4 text-center">NIVO</div>
-          <div className="col fw-bold fs-4 text-center">STANJE</div>
+          <div className="col-4 ps-0">{/* here is image */}</div>
+          <div className="col-2 fw-bold fs-4 text-center">IME</div>
+          <div className="col-3 fw-bold fs-4 text-center">NIVO</div>
+          <div className="col-3 fw-bold fs-4 text-center">STANJE</div>
         </div>
         <div className="ms-4 mt-3">
           <UserListItem
@@ -96,6 +97,22 @@ const IndexPage = () => (
             name={"Luka"}
             status={"nov uporabnik"}
             level={"začetnik"}
+          />
+
+          <UserCoupleListItem
+            firstUser={{
+              name: "Tatjana",
+              level: "beginner",
+              imgSrc:
+                "https://plus.unsplash.com/premium_photo-1690587673708-d6ba8a1579a5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEzfHxhdmF0YXJ8ZW58MHx8MHx8fDA%3D",
+            }}
+            secondUser={{
+              name: "Boštjan",
+              level: "beginner",
+              imgSrc:
+                "https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTczfHxhdmF0YXJ8ZW58MHx8MHx8fDA%3D",
+            }}
+            status="prideta"
           />
         </div>
       </section>
