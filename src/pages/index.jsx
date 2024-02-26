@@ -21,6 +21,7 @@ import UserListItem from "../components/user/userListItem"
 import UserCoupleListItem from "../components/user/userCoupleListItem"
 import { textCellClassNames, textCellStyle } from "../components/user/common"
 import TextCell from "../components/textCell"
+import SignUpModal from "../components/signUpModal"
 
 const pageStyles = {
   color: "#232129",
@@ -117,6 +118,10 @@ const IndexPage = () => (
             status="prideta"
           />
         </div>
+
+        <div className="text-center mt-4">
+         <SignUpModal/>
+        </div>
       </section>
 
       <hr className="my-5" />
@@ -134,11 +139,11 @@ const IndexPage = () => (
         <div className="row text-center">
           <div className="col">
             <button className="rounded-circle bg-none border-2 border-dark fs-2">
-              <i class="fa-solid fa-phone"></i>
+              <i className="fa-solid fa-phone"></i>
             </button>
           </div>
           <div className="col">
-            <TextCell>MARKO</TextCell>
+            <TextCell>BOŠTJAN</TextCell>
           </div>
           <div className="col">
             <TextCell>
