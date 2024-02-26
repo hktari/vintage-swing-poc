@@ -40,6 +40,10 @@ const rowHeadingStyle = {
   padding: "8px 16px",
 }
 
+const HeadingTwo = ({ children }) => (
+  <h2 className="mb-0 border-dark border-2 border d-inline p-1">{children}</h2>
+)
+
 const IndexPage = () => (
   <Layout>
     <MDBContainer>
@@ -73,10 +77,8 @@ const IndexPage = () => (
       </div>
 
       <section className="mt-5">
-        <h2 className="mb-0 border-dark border-2 border d-inline p-1">
-          PRIJAVLJENI
-        </h2>
-        <div className="ms-4 row">
+        <HeadingTwo>PRIJAVLJENI</HeadingTwo>
+        <div className="mt-4 ms-4 row">
           <div className="col ps-0">{/* here is image */}</div>
           <div className="col fw-bold fs-4 text-center">IME</div>
           <div className="col fw-bold fs-4 text-center">NIVO</div>
@@ -97,7 +99,35 @@ const IndexPage = () => (
           />
         </div>
       </section>
-      <hr />
+
+      <hr className="my-5" />
+
+      <section id="transportation">
+        <HeadingTwo>PREVOZI</HeadingTwo>
+        <div className="row text-center fw-bold mt-4">
+          <div className="col"></div>
+          <div className="col">VOZNIK</div>
+          <div className="col">ODHOD</div>
+          <div className="col">PRIHOD</div>
+          <div className="col">ŠT.PROST MEST</div>
+        </div>
+
+        <div className="row text-center">
+          <div className="col">
+            <button className="rounded-circle bg-none border-2 border-dark fs-2">
+              <i class="fa-solid fa-phone"></i>
+            </button>
+          </div>
+          <div className="col">MARKO</div>
+          <div className="col">
+            17:00 <span className="d-block">CELJE</span>
+          </div>
+          <div className="col">
+            00:00 <span className="d-block">CELJE</span>
+          </div>
+          <div className="col">2</div>
+        </div>
+      </section>
     </MDBContainer>
   </Layout>
 )
