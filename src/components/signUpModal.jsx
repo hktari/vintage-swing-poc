@@ -17,25 +17,27 @@ const SignUpModal = () => {
 
   return (
     <>
-      <MDBBtn onClick={toggleOpen}>LAUNCH DEMO MODAL</MDBBtn>
+      <MDBBtn onClick={toggleOpen}>PRIJAVI SE</MDBBtn>
       <MDBModal open={basicModal} setOpen={setBasicModal} tabIndex="-1">
-        <MDBModalDialog>
+        <MDBModalDialog size="fullscreen-md-down">
           <MDBModalContent>
             <MDBModalHeader>
-              <MDBModalTitle>Modal title</MDBModalTitle>
+              <MDBModalTitle>Prijava</MDBModalTitle>
               <MDBBtn
                 className="btn-close"
                 color="none"
                 onClick={toggleOpen}
               ></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>...</MDBModalBody>
+            <MDBModalBody>
+                
+            </MDBModalBody>
 
             <MDBModalFooter>
               <MDBBtn color="secondary" onClick={toggleOpen}>
-                Close
+                Zapri
               </MDBBtn>
-              <MDBBtn>Save changes</MDBBtn>
+              <MDBBtn>Prijavi se</MDBBtn>
             </MDBModalFooter>
           </MDBModalContent>
         </MDBModalDialog>
