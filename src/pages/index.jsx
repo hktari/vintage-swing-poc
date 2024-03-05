@@ -37,7 +37,7 @@ export default function Index() {
             <TableBody>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Lokacija{" "}
                   </Typography>
                 </TableCell>
@@ -45,7 +45,7 @@ export default function Index() {
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">
-                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Datum{" "}
                   </Typography>
                 </TableCell>
@@ -54,7 +54,7 @@ export default function Index() {
 
               <TableRow>
                 <TableCell component="th" scope="row">
-                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
                     Cena{" "}
                   </Typography>
                 </TableCell>

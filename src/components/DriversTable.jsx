@@ -41,16 +41,25 @@ const DriversTable = () => {
     ),
   ]
 
+  const TableHeadCell = ({ children }) => (
+    <TableCell align="center">
+      <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+        {" "}
+        {children}
+      </Typography>
+    </TableCell>
+  )
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell align="center">Voznik</TableCell>
-            <TableCell align="center">Odhod</TableCell>
-            <TableCell align="center">Prihod</TableCell>
-            <TableCell align="center">Št. prostih mest</TableCell>
+            <TableHeadCell>Voznik</TableHeadCell>
+            <TableHeadCell>Odhod</TableHeadCell>
+            <TableHeadCell>Prihod</TableHeadCell>
+            <TableHeadCell>Št. prostih mest</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
