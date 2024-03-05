@@ -1,21 +1,26 @@
 import * as React from "react"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
-import Box from "@mui/material/Box"
-import Link from "../components/Link"
 import Layout from "../components/Layout"
-import Card from "@mui/material/Card"
-import CardActions from "@mui/material/CardActions"
-import CardContent from "@mui/material/CardContent"
-import Button from "@mui/material/Button"
 
 import Table from "@mui/material/Table"
 import TableBody from "@mui/material/TableBody"
 import TableCell from "@mui/material/TableCell"
 import TableContainer from "@mui/material/TableContainer"
-import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
 import Paper from "@mui/material/Paper"
+
+import Box from "@mui/material/Box"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemAvatar from "@mui/material/ListItemAvatar"
+import ListItemText from "@mui/material/ListItemText"
+import Avatar from "@mui/material/Avatar"
+import IconButton from "@mui/material/IconButton"
+import Grid from "@mui/material/Grid"
+import CallIcon from "@mui/icons-material/Call"
+
+import users from "../../content/users.json"
 
 export default function Index() {
   return (
@@ -55,6 +60,29 @@ export default function Index() {
             </TableBody>
           </Table>
         </TableContainer>
+
+        <Grid item xs={12} md={6}>
+          <Typography sx={{ mt: 4, mb: 2 }} variant="h5" component="div">
+            Prijavljeni
+          </Typography>
+          <List dense={false}>
+            {users.map(user => (
+              <ListItem
+                secondaryAction={
+                  <IconButton edge="end" aria-label="delete">
+                    <CallIcon />
+                  </IconButton>
+                }
+              >
+                <ListItemAvatar>
+                  <Avatar alt={user.name} src={user.imgSrc} />
+                </ListItemAvatar>
+                <ListItemText primary={user.name} secondary={user.level} />
+                <ListItemText primary={user.status} />
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
       </Container>
     </Layout>
   )
