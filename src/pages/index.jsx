@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
-import "mdb-react-ui-kit/dist/css/mdb.min.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
 
 import Layout from "../components/layout"
@@ -10,16 +9,8 @@ import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 import Links from "../components/links"
 
-import {
-  MDBCarousel,
-  MDBCarouselItem,
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-} from "mdb-react-ui-kit"
 import UserListItem from "../components/user/userListItem"
 import UserCoupleListItem from "../components/user/userCoupleListItem"
-import { textCellClassNames, textCellStyle } from "../components/user/common"
 import TextCell from "../components/textCell"
 import SignUpModal from "../components/signUpModal"
 
@@ -50,7 +41,7 @@ const HeadingTwo = ({ children }) => (
 
 const IndexPage = () => (
   <Layout>
-    <MDBContainer>
+    <div className="container">
       <h1 className="text-center" style={headingStyles}>
         Preplesavanje Petek 24.2
       </h1>
@@ -169,7 +160,7 @@ const IndexPage = () => (
           </div>
         </div>
       </section>
-    </MDBContainer>
+    </div>
   </Layout>
 )
 
