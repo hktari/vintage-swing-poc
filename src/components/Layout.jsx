@@ -8,6 +8,9 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+// TODO:
+// import "../material.scss"
+
 import Header from "./Header"
 
 const Layout = ({ children }) => {
