@@ -1,5 +1,7 @@
 # TODO
-
-- remove MDB (modals are premium)
-- find working modal
-- settle for design framework
+- add header
+- check if deploy is working
+- add footer
+- add manage page
+- add new event page
+- add manager variant of event page
