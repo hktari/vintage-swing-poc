@@ -14,16 +14,21 @@ import {
 import GoogleIcon from "@mui/icons-material/Google"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import AppleIcon from "@mui/icons-material/Apple"
+import Link from "../components/Link"
 
 const Login = () => {
   const SocialLoginListItem = ({ icon, text, onClick }) => (
-    <ListItem disablePadding>
-      <ListItemButton onClick={onClick}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText>{text}</ListItemText>
-      </ListItemButton>
-    </ListItem>
+    <Link to="/" underline="none" color="inherit">
+      <ListItem disablePadding>
+        <ListItemButton onClick={onClick}>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText>{text}</ListItemText>
+        </ListItemButton>
+      </ListItem>
+    </Link>
   )
+
+  const onSocialClickHandler = () => {}
 
   return (
     <Container sx={{ height: "100vh" }}>
