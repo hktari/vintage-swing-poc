@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 // TODO:
 // import "../material.scss"
@@ -28,7 +28,28 @@ import GroupsIcon from "@mui/icons-material/Groups"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { lime, purple } from "@mui/material/colors"
 
+import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
+import { LinkProps } from "@mui/material/Link"
+
+const LinkBehavior = React.forwardRef((props, ref) => {
+  const { href, ...other } = props
+  // Map href (Material UI) -> to (react-router)
+  return <GatsbyLink ref={ref} to={href} {...other} />
+})
+
 const theme = createTheme({
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
+  },
   palette: {
     primary: {
       main: "#a02A00",
@@ -48,6 +69,10 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          menuLinks {
+            name
+            link
+          }
         }
       }
     }
@@ -69,7 +94,10 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <Box ref={ref}>
         {" "}
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Header
+          menuLinks={data.site.siteMetadata?.menuLinks}
+          siteTitle={data.site.siteMetadata?.title || `Title`}
+        />
         <Box sx={{ pb: 7 }}>
           <main>{children}</main>
         </Box>
@@ -78,8 +106,13 @@ const Layout = ({ children }) => {
           elevation={3}
         >
           <BottomNavigation value={selectedTab} onChange={handleChange}>
-            <BottomNavigationAction label="Dogodki" icon={<GroupsIcon />} />
             <BottomNavigationAction
+              href="/"
+              label="Dogodki"
+              icon={<GroupsIcon />}
+            />
+            <BottomNavigationAction
+              href="/profile"
               label="Račun"
               icon={<AccountCircleIcon />}
             />

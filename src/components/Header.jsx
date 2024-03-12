@@ -6,7 +6,7 @@ import logo from "../images/logo.png"
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import MenuIcon from "@mui/icons-material/Menu"
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, menuLinks }) => {
   const topLevelLocation = true
 
   return (
@@ -24,11 +24,11 @@ const Header = ({ siteTitle }) => {
       >
         {topLevelLocation ? (
           <IconButton aria-label="side menu" color="primary" size="large">
-            <MenuIcon sx={{color: 'primary.contrastText'}}/>
+            <MenuIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
         ) : (
           <IconButton aria-label="navigate back">
-            <ArrowBackIosIcon sx={{color: 'primary.contrastText'}}/>
+            <ArrowBackIosIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
         )}
 
