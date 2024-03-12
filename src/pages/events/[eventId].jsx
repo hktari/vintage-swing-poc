@@ -27,14 +27,17 @@ import DriversTable from "../../components/DriversTable"
 import { dateAsString } from "../../util/date"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
+import { Button } from "@mui/material"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
+  const isSignedUp = false
+  const isOfferingRide = false
 
   return (
     <Layout location={location}>
-      <Container maxWidth="sm">
-      <GatsbyImage image={data.eventImage?.gatsbyImageData} />
+      <Container maxWidth="sm" sx={{ pb: 2 }}>
+        <GatsbyImage image={data.eventImage?.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
           {event.title}
         </Typography>
@@ -116,10 +119,20 @@ export default function EventDetailPage({ location, data }) {
               <ListItemText primary="prideta" />
             </ListItem>
           </List>
+          <Box sx={{ textAlign: "center", mt: 2 }}>
+            <Button sx={{ fontWeight: "bold" }} variant="contained">
+              {isSignedUp ? "Prijavi se" : "Uredi Prijavo"}
+            </Button>
+          </Box>
         </Section>
 
         <Section title={"Prevozi"}>
           <DriversTable />
+          <Box sx={{ textAlign: "center", mt: 2 }}>
+            <Button variant="outlined">
+              {isOfferingRide ? "Ponudi Prevoz" : "Uredi Prevoz"}{" "}
+            </Button>
+          </Box>
         </Section>
       </Container>
     </Layout>
