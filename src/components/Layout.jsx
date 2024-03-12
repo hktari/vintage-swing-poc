@@ -79,7 +79,7 @@ const Layout = ({ children, location }) => {
   `)
 
   const isEventsTab =
-    location.pathname === "/" || location.pathname.includes("events")
+    location?.pathname === "/" || location?.pathname.includes("events")
 
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0
