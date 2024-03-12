@@ -134,7 +134,7 @@ export const query = graphql`
       gatsbyImageData(height: 350)
     }
     event: eventsJson(jsonId: { eq: $eventId }) {
-      id
+      id: jsonId
       description
       date
       image

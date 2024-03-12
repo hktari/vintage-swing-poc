@@ -53,7 +53,7 @@ export const query = graphql`
     allEventsJson {
       edges {
         node {
-          id
+          id: jsonId
           location
           title
           date
