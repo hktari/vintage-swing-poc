@@ -26,11 +26,12 @@ import Section from "../../components/Section"
 import DriversTable from "../../components/DriversTable"
 
 export default function EventDetailPage({ location }) {
+  const { event = {} } = location.state
   return (
     <Layout location={location}>
       <Container maxWidth="sm">
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
-          Preplesavanje Petek
+          {event.title}
         </Typography>
         <TableContainer component={Paper} sx={{ mt: 2 }}>
           <Table aria-label="simple table">
@@ -41,7 +42,7 @@ export default function EventDetailPage({ location }) {
                     Lokacija{" "}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">SWING STUDIO LJ</TableCell>
+                <TableCell align="right">{event.location}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell component="th" scope="row">

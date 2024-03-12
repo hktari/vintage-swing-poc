@@ -21,7 +21,7 @@ const EventListItem = ({ event }) => {
     .substring(0, 5)}`
 
   return (
-    <ListItemButton href={`/events/${event.id}`}>
+    <ListItemButton href={`/events/${event.id}`} state={{ event }}>
       <ListItemText
         primary={event.title}
         secondary={`${formattedDateTimeString} @ ${event.location}`}
@@ -44,17 +44,6 @@ const EventsPage = ({ location }) => {
           {events.map(event => (
             <EventListItem event={event} />
           ))}
-
-          <ListItemButton href="/events/test">
-            <ListItemText
-              primary="
-              SWING ZORICA ta torek"
-              secondary=" 12.3.2024 ob 20:00 @ Zorica"
-            />
-            <ListItemIcon>
-              <ArrowForwardIosIcon />
-            </ListItemIcon>
-          </ListItemButton>
         </List>
       </Container>
     </Layout>
