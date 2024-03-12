@@ -78,27 +78,25 @@ const Layout = ({ children, location }) => {
     }
   `)
 
-  const [selectedTab, setSelectedTab] = useState(location.pathname)
-  // const handleChange = (event, newValue) => {
-  //   setSelectedTab(newValue)
-  // }
+  const isEventsTab =
+    location.pathname === "/" || location.pathname.includes("events")
 
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0
     // setMessages(refreshMessages())
-  }, [selectedTab])
+  }, [isEventsTab])
 
   const ref = React.useRef(null)
 
   return (
     <ThemeProvider theme={theme}>
       <Box ref={ref}>
-        {" "}
         <Header
           location={location}
           menuLinks={data.site.siteMetadata?.menuLinks}
           siteTitle={data.site.siteMetadata?.title || `Title`}
         />
+
         <Box sx={{ pb: 7 }}>
           <main>{children}</main>
         </Box>
@@ -106,13 +104,15 @@ const Layout = ({ children, location }) => {
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={3}
         >
-          <BottomNavigation value={selectedTab}>
+          <BottomNavigation value={isEventsTab ? 0 : 1}>
             <BottomNavigationAction
+              value={0}
               href="/"
               label="Dogodki"
               icon={<GroupsIcon />}
             />
             <BottomNavigationAction
+              value={1}
               href="/profile"
               label="Račun"
               icon={<AccountCircleIcon />}

@@ -6,7 +6,7 @@ const EventsPage = ({ location }) => {
   return (
     <Layout location={location}>
       <div>EventsPage</div>
-      <Link to="/event/test" state={{ eventId: "test" }}>
+      <Link to="/events/test">
         event detail
       </Link>
     </Layout>
