@@ -24,12 +24,18 @@ import CallIcon from "@mui/icons-material/Call"
 import users from "../../../content/users.json"
 import Section from "../../components/Section"
 import DriversTable from "../../components/DriversTable"
+import { dateAsString } from "../../util/date"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
-export default function EventDetailPage({ location }) {
-  const { event = {} } = location.state
+export default function EventDetailPage({ location, data }) {
+  const event = data.event
+
   return (
     <Layout location={location}>
       <Container maxWidth="sm">
+        {JSON.stringify(data)}
+        <GatsbyImage image={data.eventImage.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
           {event.title}
         </Typography>
@@ -50,7 +56,9 @@ export default function EventDetailPage({ location }) {
                     Datum{" "}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">24.2.2024 ob 20:00</TableCell>
+                <TableCell align="right">
+                  {dateAsString(new Date(event.date))}
+                </TableCell>
               </TableRow>
 
               <TableRow>
@@ -59,11 +67,16 @@ export default function EventDetailPage({ location }) {
                     Cena{" "}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">7€ | 12€ po 21:00</TableCell>
+                <TableCell align="right">{event.price}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
+
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="body">{event.description}</Typography>
+        </Box>
+
         <Section title={"Prijavljeni"}>
           <List dense={false}>
             {users.map(user => (
@@ -113,3 +126,21 @@ export default function EventDetailPage({ location }) {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query EventDetailPage($imageName: String, $eventId: String) {
+    eventImage: imageSharp(fluid: { originalName: { eq: $imageName } }) {
+      id
+      gatsbyImageData(height: 350)
+    }
+    event: eventsJson(jsonId: { eq: $eventId }) {
+      id
+      description
+      date
+      image
+      location
+      title
+      price
+    }
+  }
+`

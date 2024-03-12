@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import React from "react"
 import Layout from "../components/Layout"
 import {
@@ -12,16 +12,14 @@ import {
 } from "@mui/material"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
-import events from "../data/events.json"
+import { dateAsString } from "../util/date"
 
 const EventListItem = ({ event }) => {
   const eventDate = new Date(event.date)
-  const formattedDateTimeString = `${eventDate.getDate()}.${eventDate.getMonth()}.${eventDate.getFullYear()} ob ${eventDate
-    .toTimeString()
-    .substring(0, 5)}`
+  const formattedDateTimeString = dateAsString(eventDate)
 
   return (
-    <ListItemButton href={`/events/${event.id}`} state={{ event }}>
+    <ListItemButton href={`/events/${event.id}`}>
       <ListItemText
         primary={event.title}
         secondary={`${formattedDateTimeString} @ ${event.location}`}
@@ -33,7 +31,7 @@ const EventListItem = ({ event }) => {
   )
 }
 
-const EventsPage = ({ location }) => {
+const EventsPage = ({ location, data }) => {
   return (
     <Layout location={location}>
       <Container sx={{ px: 2, py: 4 }}>
@@ -41,13 +39,28 @@ const EventsPage = ({ location }) => {
           Dogodki
         </Typography>
         <List>
-          {events.map(event => (
-            <EventListItem event={event} />
+          {data.allEventsJson.edges.map(edge => (
+            <EventListItem event={edge.node} />
           ))}
         </List>
       </Container>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    allEventsJson {
+      edges {
+        node {
+          id
+          location
+          title
+          date
+        }
+      }
+    }
+  }
+`
 
 export default EventsPage

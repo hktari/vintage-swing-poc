@@ -1,15 +1,17 @@
 # TODO
-- add header
+- add header [OK]
   - add logo
   - add back navigation
 
-- events page
+- events page [ok]
   - list of events
+- 
 - event detail page
   - dodaj slikco
   - "PONUDI PREVOZ" gumb
   - "PRIJAVI SE" gumb / "UREDI PRIJAVO" gumb
   - *manager*: cancel event
+  
 - event sign up modal
   - "nastavi svoj status" selector
   - ponujaš prevoz ?
@@ -19,6 +21,8 @@
   - switch between profile and events tab
 
 - add profile page
+  - select level
+  - select lead / follower
 
 
 - add manage page
