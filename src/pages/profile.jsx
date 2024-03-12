@@ -1,9 +1,9 @@
 import React from "react"
 import Layout from "../components/Layout"
 
-const Profile = () => {
+const Profile = ({ location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <div>Profile page</div>
     </Layout>
   )

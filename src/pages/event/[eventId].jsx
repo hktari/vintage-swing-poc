@@ -26,9 +26,8 @@ import Section from "../../components/Section"
 import DriversTable from "../../components/DriversTable"
 
 export default function EventDetailPage({ location }) {
-
   return (
-    <Layout>
+    <Layout location={location}>
       <Container maxWidth="sm">
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
           Preplesavanje Petek

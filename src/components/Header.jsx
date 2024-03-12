@@ -5,9 +5,15 @@ import { StaticImage } from "gatsby-plugin-image"
 import logo from "../images/logo.png"
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import MenuIcon from "@mui/icons-material/Menu"
+import { navigate } from "gatsby"
 
-const Header = ({ siteTitle, menuLinks }) => {
-  const topLevelLocation = true
+const Header = ({ siteTitle, menuLinks, location }) => {
+  const matchNestedUri = /\/\w*(\/\w+)+/
+  const topLevelLocation = !location.pathname.match(matchNestedUri)
+
+  const onNavigateBack = () => {
+    navigate("/")
+  }
 
   return (
     <header>
@@ -27,11 +33,10 @@ const Header = ({ siteTitle, menuLinks }) => {
             <MenuIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
         ) : (
-          <IconButton aria-label="navigate back">
+          <IconButton aria-label="navigate back" onClick={onNavigateBack}>
             <ArrowBackIosIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
         )}
-
         <img src={logo} height={50} alt="vintage swing logo" />
       </Box>
     </header>

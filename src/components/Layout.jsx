@@ -63,7 +63,7 @@ const theme = createTheme({
   },
 })
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -78,10 +78,10 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [selectedTab, setSelectedTab] = useState(0)
-  const handleChange = (event, newValue) => {
-    setSelectedTab(newValue)
-  }
+  const [selectedTab, setSelectedTab] = useState(location.pathname)
+  // const handleChange = (event, newValue) => {
+  //   setSelectedTab(newValue)
+  // }
 
   useEffect(() => {
     ref.current.ownerDocument.body.scrollTop = 0
@@ -95,6 +95,7 @@ const Layout = ({ children }) => {
       <Box ref={ref}>
         {" "}
         <Header
+          location={location}
           menuLinks={data.site.siteMetadata?.menuLinks}
           siteTitle={data.site.siteMetadata?.title || `Title`}
         />
@@ -105,7 +106,7 @@ const Layout = ({ children }) => {
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={3}
         >
-          <BottomNavigation value={selectedTab} onChange={handleChange}>
+          <BottomNavigation value={selectedTab}>
             <BottomNavigationAction
               href="/"
               label="Dogodki"
