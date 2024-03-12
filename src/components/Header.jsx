@@ -8,7 +8,8 @@ const Header = ({ siteTitle }) => (
   <header>
     <Box
       sx={{
-        p: 2,
+        py: 2,
+        px: 4,
         display: "flex",
         justifyContent: "end",
         alignItems: "center",
