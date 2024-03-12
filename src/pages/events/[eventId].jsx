@@ -34,8 +34,7 @@ export default function EventDetailPage({ location, data }) {
   return (
     <Layout location={location}>
       <Container maxWidth="sm">
-        {JSON.stringify(data)}
-        <GatsbyImage image={data.eventImage?.gatsbyImageData} />
+      <GatsbyImage image={data.eventImage?.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
           {event.title}
         </Typography>
