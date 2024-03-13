@@ -21,21 +21,49 @@ import {
   Button,
 } from "@mui/material"
 import EventListItem from "./eventListItem"
+import ConfirmChoiceDialog from "../modal/confirmChoiceDialog"
 
 const ManagerPage = ({ location, data }) => {
   const [users, setUsers] = useState(usersInitial)
+  const [confirmationDialogContext, setConfirmationDialogContext] =
+    useState(null)
+  const [confirmationDialogMessage, setConfirmationDialogMessage] = useState()
+  const [confirmChoiceDialogOpen, setConfirmChoiceDialogOpen] = useState(false)
 
-  const handleUserAction = (verify, user) => {
-    
-    
+  const removeUserFromList = user => {
     const usersUpdate = [...users]
     usersUpdate.splice(users.indexOf(user), 1)
     setUsers(usersUpdate)
   }
 
+  const onConfirmUser = user => {
+    setConfirmChoiceDialogOpen(true)
+    setConfirmationDialogContext(user)
+    setConfirmationDialogMessage(`Potrdi uporabnika ${user.name} ?`)
+  }
+  const onRejectUser = user => {
+    setConfirmChoiceDialogOpen(true)
+    setConfirmationDialogContext(user)
+    setConfirmationDialogMessage(`Zavrni prijavo uporabnika ${user.name} ?`)
+  }
+
+  const onConfirmationDialogComplete = confirmed => {
+    if (confirmed) {
+      const user = confirmationDialogContext
+      removeUserFromList(user)
+    }
+    setConfirmationDialogContext(null)
+    setConfirmChoiceDialogOpen(false)
+  }
+
   return (
     <Container sx={{ py: 4 }}>
       {" "}
+      <ConfirmChoiceDialog
+        message={confirmationDialogMessage}
+        open={confirmChoiceDialogOpen}
+        onChoiceMade={onConfirmationDialogComplete}
+      />
       <Box component={"section"}>
         <Typography variant="h4" component="h2">
           Novi uporabniki
@@ -51,7 +79,7 @@ const ManagerPage = ({ location, data }) => {
                       edge="end"
                       aria-label="verify"
                       size="large"
-                      onClick={() => handleUserAction(true, user)}
+                      onClick={() => onConfirmUser(user)}
                     >
                       <CheckCircleIcon fontSize="20px" color="success" />
                     </IconButton>
@@ -59,7 +87,7 @@ const ManagerPage = ({ location, data }) => {
                       edge="end"
                       aria-label="remove"
                       size="large"
-                      onClick={() => handleUserAction(false, user)}
+                      onClick={() => onRejectUser(user)}
                     >
                       <RemoveCircleOutlineIcon fontSize="20px" />
                     </IconButton>
