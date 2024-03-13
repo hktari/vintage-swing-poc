@@ -31,6 +31,13 @@ import { Button } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
 
+const signedInUser = {
+  imgSrc:
+    "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
+  name: "Janez",
+  status: "išče prevoz",
+  level: "LH2",
+}
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
@@ -116,7 +123,19 @@ export default function EventDetailPage({ location, data }) {
                 <ListItemText primary={user.status} />
               </ListItem>
             ))}
-           
+
+            {isSignedUp && (
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt={signedInUser.name} src={signedInUser.imgSrc} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={signedInUser.name}
+                  secondary={signedInUser.level}
+                />
+                <ListItemText primary={currentUserSignedUpStatus} />
+              </ListItem>
+            )}
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button
