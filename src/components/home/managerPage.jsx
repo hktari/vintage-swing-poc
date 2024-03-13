@@ -18,12 +18,11 @@ import {
   ListItemText,
   Typography,
   Stack,
+  Button,
 } from "@mui/material"
 import EventListItem from "./eventListItem"
 
 const ManagerPage = ({ location, data }) => {
-  
-  
   return (
     <Container sx={{ py: 4 }}>
       {" "}
@@ -85,6 +84,11 @@ const ManagerPage = ({ location, data }) => {
             </React.Fragment>
           ))}
         </List>
+        <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Button variant="contained" >
+            Nov Dogodek
+          </Button>
+        </Box>
       </Box>
     </Container>
   )
