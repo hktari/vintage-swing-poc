@@ -1,5 +1,5 @@
-import React from "react"
-import users from "../../../content/unverified-users.json"
+import React, { useState } from "react"
+import usersInitial from "../../../content/unverified-users.json"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
 import RemoveCircleRoundedIcon from "@mui/icons-material/RemoveCircleRounded"
@@ -23,6 +23,16 @@ import {
 import EventListItem from "./eventListItem"
 
 const ManagerPage = ({ location, data }) => {
+  const [users, setUsers] = useState(usersInitial)
+
+  const handleUserAction = (verify, user) => {
+    
+    
+    const usersUpdate = [...users]
+    usersUpdate.splice(users.indexOf(user), 1)
+    setUsers(usersUpdate)
+  }
+
   return (
     <Container sx={{ py: 4 }}>
       {" "}
@@ -37,10 +47,20 @@ const ManagerPage = ({ location, data }) => {
                 alignItems="flex-start"
                 secondaryAction={
                   <Stack direction="horizontal" spacing="20px">
-                    <IconButton edge="end" aria-label="verify" size="large">
+                    <IconButton
+                      edge="end"
+                      aria-label="verify"
+                      size="large"
+                      onClick={() => handleUserAction(true, user)}
+                    >
                       <CheckCircleIcon fontSize="20px" color="success" />
                     </IconButton>
-                    <IconButton edge="end" aria-label="remove" size="large">
+                    <IconButton
+                      edge="end"
+                      aria-label="remove"
+                      size="large"
+                      onClick={() => handleUserAction(false, user)}
+                    >
                       <RemoveCircleOutlineIcon fontSize="20px" />
                     </IconButton>
                   </Stack>
@@ -85,9 +105,7 @@ const ManagerPage = ({ location, data }) => {
           ))}
         </List>
         <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Button variant="contained" >
-            Nov Dogodek
-          </Button>
+          <Button variant="contained">Nov Dogodek</Button>
         </Box>
       </Box>
     </Container>
