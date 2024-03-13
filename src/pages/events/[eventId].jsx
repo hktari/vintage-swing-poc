@@ -151,7 +151,7 @@ export default function EventDetailPage({ location, data }) {
         <Section title={"Prevozi"}>
           <DriversTable />
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button variant="outlined">
+            <Button variant="primary">
               {isOfferingRide ? "Uredi Prevoz" : "Ponudi Prevoz"}{" "}
             </Button>
           </Box>

@@ -30,6 +30,7 @@ import { lime, purple } from "@mui/material/colors"
 
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
 import { LinkProps } from "@mui/material/Link"
+import UserContextProvider from "../context/userContextProvider"
 
 const LinkBehavior = React.forwardRef((props, ref) => {
   const { href, ...other } = props
@@ -90,36 +91,38 @@ const Layout = ({ children, location }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box ref={ref}>
-        <Header
-          location={location}
-          menuLinks={data.site.siteMetadata?.menuLinks}
-          siteTitle={data.site.siteMetadata?.title || `Title`}
-        />
+      <UserContextProvider>
+        <Box ref={ref}>
+          <Header
+            location={location}
+            menuLinks={data.site.siteMetadata?.menuLinks}
+            siteTitle={data.site.siteMetadata?.title || `Title`}
+          />
 
-        <Box sx={{ pb: 7 }}>
-          <main>{children}</main>
+          <Box sx={{ pb: 7 }}>
+            <main>{children}</main>
+          </Box>
+          <Paper
+            sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+            elevation={3}
+          >
+            <BottomNavigation value={isEventsTab ? 0 : 1}>
+              <BottomNavigationAction
+                value={0}
+                href="/"
+                label="Dogodki"
+                icon={<GroupsIcon />}
+              />
+              <BottomNavigationAction
+                value={1}
+                href="/profile"
+                label="Račun"
+                icon={<AccountCircleIcon />}
+              />
+            </BottomNavigation>
+          </Paper>
         </Box>
-        <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-          elevation={3}
-        >
-          <BottomNavigation value={isEventsTab ? 0 : 1}>
-            <BottomNavigationAction
-              value={0}
-              href="/"
-              label="Dogodki"
-              icon={<GroupsIcon />}
-            />
-            <BottomNavigationAction
-              value={1}
-              href="/profile"
-              label="Račun"
-              icon={<AccountCircleIcon />}
-            />
-          </BottomNavigation>
-        </Paper>
-      </Box>
+      </UserContextProvider>
     </ThemeProvider>
   )
 }
