@@ -13,20 +13,6 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
-    menuLinks: [
-      {
-        name: "events",
-        link: "/events",
-      },
-      {
-        name: "event detail",
-        link: "/event-detail",
-      },
-      {
-        name: "profile",
-        link: "/profile",
-      },
-    ],
   },
   plugins: [
     `gatsby-plugin-image`,

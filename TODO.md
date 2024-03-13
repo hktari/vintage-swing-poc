@@ -15,23 +15,23 @@
 - dodaj slikco [OK]
 - "PONUDI PREVOZ" gumb [OK]
 - "PRIJAVI SE" gumb / "UREDI PRIJAVO" gumb [OK]
-- sign up modal
+- sign up modal [OK]
 - _manager_: cancel event
 
 ## event sign up modal
 
-- "nastavi svoj status" selector
+- "nastavi svoj status" selector [OK]
 - ponujaš prevoz ?
 -
 
 ## add footer
 
-- switch between profile and events tab
+- switch between profile and events tab [OK]
 
 ## add profile page
 
-- select level
-- select lead / follower
+- select level [NO]
+- select lead / follower [OK]
 
 ## add manage page
 
@@ -44,3 +44,6 @@
 
 - as user
 - as manager
+
+
+## Install App

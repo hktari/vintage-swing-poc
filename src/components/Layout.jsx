@@ -69,10 +69,6 @@ const Layout = ({ children, location }) => {
       site {
         siteMetadata {
           title
-          menuLinks {
-            name
-            link
-          }
         }
       }
     }
