@@ -28,14 +28,21 @@ import { dateAsString } from "../../util/date"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import { Button } from "@mui/material"
+import SignUpModal from "../../components/events/signUpModal"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
   const isSignedUp = false
   const isOfferingRide = false
 
+  const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
+  const onSignUp = () => {
+    setSignUpModalOpen(true)
+  }
+
   return (
     <Layout location={location}>
+      <SignUpModal open={signUpModalOpen} setOpen={setSignUpModalOpen} />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
@@ -120,8 +127,12 @@ export default function EventDetailPage({ location, data }) {
             </ListItem>
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button sx={{ fontWeight: "bold" }} variant="contained">
-              {isSignedUp ? "Prijavi se" : "Uredi Prijavo"}
+            <Button
+              sx={{ fontWeight: "bold" }}
+              variant="contained"
+              onClick={onSignUp}
+            >
+              {isSignedUp ? "Uredi Prijavo" : "Prijavi se"}
             </Button>
           </Box>
         </Section>
@@ -130,7 +141,7 @@ export default function EventDetailPage({ location, data }) {
           <DriversTable />
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button variant="outlined">
-              {isOfferingRide ? "Ponudi Prevoz" : "Uredi Prevoz"}{" "}
+              {isOfferingRide ? "Uredi Prevoz" : "Ponudi Prevoz"}{" "}
             </Button>
           </Box>
         </Section>
