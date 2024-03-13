@@ -120,12 +120,22 @@ export default function EventDetailPage({ location, data }) {
                   <Avatar alt={user.name} src={user.imgSrc} />
                 </ListItemAvatar>
                 <ListItemText primary={user.name} secondary={user.level} />
-                <ListItemText primary={user.status} />
+                <ListItemText primary={user.status} sx={{ textAlign: "start" }} />
               </ListItem>
             ))}
 
             {isSignedUp && (
-              <ListItem>
+              <ListItem
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    sx={{ visibility: "hidden" }}
+                  >
+                    <CallIcon />
+                  </IconButton>
+                }
+              >
                 <ListItemAvatar>
                   <Avatar alt={signedInUser.name} src={signedInUser.imgSrc} />
                 </ListItemAvatar>
@@ -133,7 +143,10 @@ export default function EventDetailPage({ location, data }) {
                   primary={signedInUser.name}
                   secondary={signedInUser.level}
                 />
-                <ListItemText primary={currentUserSignedUpStatus} />
+                <ListItemText
+                  primary={currentUserSignedUpStatus}
+                  sx={{ textAlign: "start" }}
+                />
               </ListItem>
             )}
           </List>
