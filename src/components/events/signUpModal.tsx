@@ -15,35 +15,45 @@ import {
   SelectChangeEvent,
 } from "@mui/material"
 
+type UserEventStatus = string | null
+
 type Props = {
   open: boolean
   setOpen: (open: boolean) => void
-  statusIn: string
+  statusIn: UserEventStatus
+  onSubmit: (statusOut: UserEventStatus) => void
 }
 
-export default function SignUpModal({ open, setOpen, statusIn }: Props) {
+export default function SignUpModal({
+  open,
+  setOpen,
+  statusIn,
+  onSubmit,
+}: Props) {
   const theme = useTheme()
   //   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
 
   const selections = ["pridem", "iščem prevoz", "iščem partnerja"]
   const [status, setStatus] = React.useState(statusIn || selections[0])
 
+  const isSignedUp = status !== null
+  
   const handleClose = () => {
     setOpen(false)
   }
 
-  const handleChange = (ev: SelectChangeEvent<string>) => {
+  const handleSignOut = () => {
+    onSubmit(null)
+    handleClose()
+  }
+
+  const handleChange = (ev: SelectChangeEvent<UserEventStatus>) => {
+    console.log("value", ev.target.value)
     setStatus(ev.target.value as string)
   }
 
   const MenuItems = () => {
-    return (
-      <>
-        {selections.map(status => {
-          return <MenuItem value={status}>{status}</MenuItem>
-        })}
-      </>
-    )
+    return <></>
   }
 
   return (
@@ -58,8 +68,9 @@ export default function SignUpModal({ open, setOpen, statusIn }: Props) {
             event.preventDefault()
             const formData = new FormData(event.currentTarget)
             const formJson = Object.fromEntries((formData as any).entries())
-            const email = formJson.email
-            console.log(email)
+            console.log(formJson.status)
+
+            onSubmit(formJson.status)
             handleClose()
           },
         }}
@@ -70,16 +81,23 @@ export default function SignUpModal({ open, setOpen, statusIn }: Props) {
         <DialogContent>
           <FormControl fullWidth>
             <Select
-              id="demo-simple-select"
+              id="status"
+              name="status"
               value={status}
               onChange={handleChange}
             >
-              <MenuItems />
+              {selections.map((selection, idx) => {
+                return (
+                  <MenuItem key={idx} value={selection}>
+                    {selection}
+                  </MenuItem>
+                )
+              })}
             </Select>
           </FormControl>{" "}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Prekliči</Button>
+          {isSignedUp && <Button onClick={handleSignOut}>Odjava</Button>}
           <Button type="submit" variant="contained">
             Potrdi
           </Button>

@@ -29,20 +29,32 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import { Button } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
+import { useState } from "react"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
-  const isSignedUp = false
+  const [currentUserSignedUpStatus, setCurrentUserSignedUpStatus] =
+    useState(null)
   const isOfferingRide = false
 
   const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
   const onSignUp = () => {
     setSignUpModalOpen(true)
   }
+  const onSignUpSubmit = newStatus => {
+    setCurrentUserSignedUpStatus(newStatus)
+  }
+
+  const isSignedUp = currentUserSignedUpStatus !== null
 
   return (
     <Layout location={location}>
-      <SignUpModal open={signUpModalOpen} setOpen={setSignUpModalOpen} />
+      <SignUpModal
+        open={signUpModalOpen}
+        setOpen={setSignUpModalOpen}
+        onSubmit={onSignUpSubmit}
+        statusIn={currentUserSignedUpStatus}
+      />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
@@ -129,7 +141,7 @@ export default function EventDetailPage({ location, data }) {
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button
               sx={{ fontWeight: "bold" }}
-              variant="contained"
+              variant={isSignedUp ? "outlined" : "contained"}
               onClick={onSignUp}
             >
               {isSignedUp ? "Uredi Prijavo" : "Prijavi se"}

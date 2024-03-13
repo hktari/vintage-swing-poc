@@ -40,7 +40,7 @@ const EventsPage = ({ location, data }) => {
         </Typography>
         <List>
           {data.allEventsJson.edges.map(edge => (
-            <EventListItem event={edge.node} />
+            <EventListItem key={edge.node.id} event={edge.node} />
           ))}
         </List>
       </Container>
