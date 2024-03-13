@@ -36,9 +36,10 @@
 ## add manage page
 
 - users section
-  - confirm new users identity
-- events section
-  - edit / add event
+  - confirm new users identity [OK]
+- events section [OK]
+  - add event [OK]
+  - edit [NO]
 
 ## QR code into app
 
