@@ -30,30 +30,24 @@ import { graphql } from "gatsby"
 import { Button } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
-
-const signedInUser = {
-  imgSrc:
-    "https://images.unsplash.com/photo-1624298357597-fd92dfbec01d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
-  name: "Janez",
-  status: "išče prevoz",
-  level: "LH2",
-}
+import { useUser } from "../../context/userContextProvider"
 
 export default function EventDetailPage({ location, data }) {
+  const { user: signedInUser } = useUser()
+  const [signedUpStatus, setSignedUpStatus] = useState(null)
+  const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
+
   const event = data.event
-  const [currentUserSignedUpStatus, setCurrentUserSignedUpStatus] =
-    useState(null)
   const isOfferingRide = false
 
-  const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
   const onSignUp = () => {
     setSignUpModalOpen(true)
   }
   const onSignUpSubmit = newStatus => {
-    setCurrentUserSignedUpStatus(newStatus)
+    setSignedUpStatus(newStatus)
   }
 
-  const isSignedUp = currentUserSignedUpStatus !== null
+  const isSignedUp = signedUpStatus !== null
 
   return (
     <Layout location={location}>
@@ -61,7 +55,7 @@ export default function EventDetailPage({ location, data }) {
         open={signUpModalOpen}
         setOpen={setSignUpModalOpen}
         onSubmit={onSignUpSubmit}
-        statusIn={currentUserSignedUpStatus}
+        statusIn={signedUpStatus}
       />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
@@ -120,7 +114,7 @@ export default function EventDetailPage({ location, data }) {
                   <Avatar alt={user.name} src={user.imgSrc} />
                 </ListItemAvatar>
                 <ListItemText primary={user.name} secondary={user.level} />
-                <ListItemText primary={user.status} />
+                <ListItemText primary={signedUpStatus} />
               </ListItem>
             ))}
 
@@ -133,7 +127,7 @@ export default function EventDetailPage({ location, data }) {
                   primary={signedInUser.name}
                   secondary={signedInUser.level}
                 />
-                <ListItemText primary={currentUserSignedUpStatus} />
+                <ListItemText primary={signedUpStatus} />
               </ListItem>
             )}
           </List>
