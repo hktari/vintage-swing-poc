@@ -10,25 +10,8 @@ import {
 } from "@mui/material"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { dateAsString } from "../../util/date"
+import EventListItem from "./eventListItem"
 
-
-const EventListItem = ({ event }) => {
-    const eventDate = new Date(event.date)
-    const formattedDateTimeString = dateAsString(eventDate)
-  
-    return (
-      <ListItemButton href={`/events/${event.id}`}>
-        <ListItemText
-          primary={event.title}
-          secondary={`${formattedDateTimeString} @ ${event.location}`}
-        />
-        <ListItemIcon>
-          <ArrowForwardIosIcon />
-        </ListItemIcon>
-      </ListItemButton>
-    )
-  }
-  
 const HomePage = ({ location, data }) => {
   return (
     <Container sx={{ px: 2, py: 4 }}>

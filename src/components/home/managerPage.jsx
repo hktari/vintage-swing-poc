@@ -19,7 +19,11 @@ import {
   Typography,
   Stack,
 } from "@mui/material"
+import EventListItem from "./eventListItem"
+
 const ManagerPage = ({ location, data }) => {
+  
+  
   return (
     <Container sx={{ py: 4 }}>
       {" "}
@@ -38,7 +42,7 @@ const ManagerPage = ({ location, data }) => {
                       <CheckCircleIcon fontSize="20px" color="success" />
                     </IconButton>
                     <IconButton edge="end" aria-label="remove" size="large">
-                      <RemoveCircleOutlineIcon fontSize="20px"  />
+                      <RemoveCircleOutlineIcon fontSize="20px" />
                     </IconButton>
                   </Stack>
                 }
@@ -63,6 +67,20 @@ const ManagerPage = ({ location, data }) => {
                   }
                 />
               </ListItem>
+              <Divider variant="inset" component="li" />
+            </React.Fragment>
+          ))}
+        </List>
+      </Box>
+      <Box component={"section"} sx={{ mt: 4 }}>
+        <Typography variant="h4" component="h2">
+          Dogodki
+        </Typography>
+
+        <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+          {data.allEventsJson.edges.map(edge => (
+            <React.Fragment>
+              <EventListItem key={edge.node.id} event={edge.node} />
               <Divider variant="inset" component="li" />
             </React.Fragment>
           ))}
