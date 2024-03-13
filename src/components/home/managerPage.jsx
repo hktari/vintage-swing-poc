@@ -28,7 +28,7 @@ const ManagerPage = ({ location, data }) => {
   const [confirmationDialogContext, setConfirmationDialogContext] =
     useState(null)
   const [confirmationDialogMessage, setConfirmationDialogMessage] = useState()
-  const [confirmChoiceDialogOpen, setConfirmChoiceDialogOpen] = useState(false)
+  const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false)
 
   const removeUserFromList = user => {
     const usersUpdate = [...users]
@@ -37,12 +37,12 @@ const ManagerPage = ({ location, data }) => {
   }
 
   const onConfirmUser = user => {
-    setConfirmChoiceDialogOpen(true)
+    setConfirmationDialogOpen(true)
     setConfirmationDialogContext(user)
     setConfirmationDialogMessage(`Potrdi uporabnika ${user.name} ?`)
   }
   const onRejectUser = user => {
-    setConfirmChoiceDialogOpen(true)
+    setConfirmationDialogOpen(true)
     setConfirmationDialogContext(user)
     setConfirmationDialogMessage(`Zavrni prijavo uporabnika ${user.name} ?`)
   }
@@ -53,7 +53,7 @@ const ManagerPage = ({ location, data }) => {
       removeUserFromList(user)
     }
     setConfirmationDialogContext(null)
-    setConfirmChoiceDialogOpen(false)
+    setConfirmationDialogOpen(false)
   }
 
   return (
@@ -61,7 +61,7 @@ const ManagerPage = ({ location, data }) => {
       {" "}
       <ConfirmChoiceDialog
         message={confirmationDialogMessage}
-        open={confirmChoiceDialogOpen}
+        open={confirmationDialogOpen}
         onChoiceMade={onConfirmationDialogComplete}
       />
       <Box component={"section"}>
