@@ -30,10 +30,10 @@ import { graphql } from "gatsby"
 import { Button } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
-import { useUser } from "../../context/userContextProvider"
+import { useAuth } from "../../context/authContextProvider"
 
 export default function EventDetailPage({ location, data }) {
-  const { user: signedInUser } = useUser()
+  const { user: signedInUser } = useAuth()
   const [signedUpStatus, setSignedUpStatus] = useState(null)
   const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
 

@@ -30,7 +30,7 @@ import { lime, purple } from "@mui/material/colors"
 
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
 import { LinkProps } from "@mui/material/Link"
-import UserContextProvider from "../context/userContextProvider"
+import AuthContextProvider from "../context/authContextProvider"
 
 const LinkBehavior = React.forwardRef((props, ref) => {
   const { href, ...other } = props
@@ -91,7 +91,7 @@ const Layout = ({ children, location }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <UserContextProvider>
+      <AuthContextProvider>
         <Box ref={ref}>
           <Header
             location={location}
@@ -122,7 +122,7 @@ const Layout = ({ children, location }) => {
             </BottomNavigation>
           </Paper>
         </Box>
-      </UserContextProvider>
+      </AuthContextProvider>
     </ThemeProvider>
   )
 }
