@@ -11,7 +11,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
-    managerMode: process.env.MANAGER_MODE,
+    managerMode: process.env.MANAGER_MODE || false,
   },
   plugins: [
     `gatsby-plugin-image`,
