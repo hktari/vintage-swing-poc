@@ -69,10 +69,13 @@ const Layout = ({ children, location }) => {
       site {
         siteMetadata {
           title
+          managerMode
         }
       }
     }
   `)
+
+  const { managerMode } = data.site.siteMetadata
 
   const isEventsTab =
     location?.pathname === "/" || location?.pathname.includes("events")
@@ -89,7 +92,6 @@ const Layout = ({ children, location }) => {
       <Box ref={ref}>
         <Header
           location={location}
-          menuLinks={data.site.siteMetadata?.menuLinks}
           siteTitle={data.site.siteMetadata?.title || `Title`}
         />
 

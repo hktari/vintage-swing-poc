@@ -13,43 +13,30 @@ import {
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
 import { dateAsString } from "../util/date"
-
-const EventListItem = ({ event }) => {
-  const eventDate = new Date(event.date)
-  const formattedDateTimeString = dateAsString(eventDate)
-
-  return (
-    <ListItemButton href={`/events/${event.id}`}>
-      <ListItemText
-        primary={event.title}
-        secondary={`${formattedDateTimeString} @ ${event.location}`}
-      />
-      <ListItemIcon>
-        <ArrowForwardIosIcon />
-      </ListItemIcon>
-    </ListItemButton>
-  )
-}
+import HomePage from "../components/home/homePage"
+import ManagerPage from "../components/home/managerPage"
 
 const EventsPage = ({ location, data }) => {
+  const isManageMode = data.site.siteMetadata.managerMode
   return (
     <Layout location={location}>
-      <Container sx={{ px: 2, py: 4 }}>
-        <Typography variant="h4" component="h1">
-          Dogodki
-        </Typography>
-        <List>
-          {data.allEventsJson.edges.map(edge => (
-            <EventListItem key={edge.node.id} event={edge.node} />
-          ))}
-        </List>
-      </Container>
+      {isManageMode ? (
+        <ManagerPage location={location} data={data} />
+      ) : (
+        <HomePage location={location} data={data} />
+      )}
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        managerMode
+      }
+    }
+
     allEventsJson {
       edges {
         node {

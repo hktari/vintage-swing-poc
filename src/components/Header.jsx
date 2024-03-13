@@ -7,7 +7,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import MenuIcon from "@mui/icons-material/Menu"
 import { navigate } from "gatsby"
 
-const Header = ({ siteTitle, menuLinks, location }) => {
+const Header = ({ siteTitle, location }) => {
   const matchNestedUri = /\/\w*(\/\w+)+/
   const topLevelLocation = !location.pathname.match(matchNestedUri)
 
