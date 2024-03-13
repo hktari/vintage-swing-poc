@@ -1,9 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/Layout"
-import { Avatar, Box, Container, Typography } from "@mui/material"
+import {
+  Avatar,
+  Box,
+  Container,
+  Typography,
+  FormControl,
+  Select,
+  MenuItem,
+} from "@mui/material"
 import { signedInUser } from "../user"
 
 const Profile = ({ location }) => {
+  const [type, setType] = useState("follower")
+  const onChange = ev => {
+    setType(ev.target.value)
+  }
+
   return (
     <Layout location={location}>
       <Container>
@@ -25,6 +38,12 @@ const Profile = ({ location }) => {
             {signedInUser.name}
           </Typography>
           <Typography variant="h6">{signedInUser.level}</Typography>
+          <FormControl sx={{ m: 1, minWidth: 80 }}>
+            <Select id="type" value={type} onChange={onChange} autoWidth>
+              <MenuItem value={"lead"}>Lead</MenuItem>
+              <MenuItem value={"follower"}>Follower</MenuItem>
+            </Select>
+          </FormControl>
           <Box sx={{ mt: 4 }}>
             <Typography
               variant="text.body"
