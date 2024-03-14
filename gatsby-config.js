@@ -45,5 +45,17 @@ module.exports = {
         path: `./src/data/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Vintage Swing`,
+        short_name: `Vintage Swing`,
+        start_url: `/`,
+        background_color: `#19857b`,
+        theme_color: `#556cd6`,
+        display: `standalone`,
+        icon: `src/images/icon.png`,
+      },
+    },
   ],
 }

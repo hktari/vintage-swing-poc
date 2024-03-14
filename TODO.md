@@ -16,7 +16,8 @@
 - "PONUDI PREVOZ" gumb [OK]
 - "PRIJAVI SE" gumb / "UREDI PRIJAVO" gumb [OK]
 - sign up modal [OK]
-  - two checkboxes: iščem prevoz and iščem partnerja
+  - two checkboxes: iščem prevoz and iščem partnerja [OK]
+-hide signin user call button
 - _manager_: cancel event
 
 ## event sign up modal
@@ -42,6 +43,9 @@
   - add event [OK]
   - edit [NO]
 
+## new event page
+
+
 ## QR code into app
 
 - as user
@@ -49,3 +53,4 @@
 
 
 ## Install App
+- vintage icon
