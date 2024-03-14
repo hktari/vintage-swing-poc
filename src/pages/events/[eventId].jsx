@@ -19,8 +19,6 @@ import ListItemText from "@mui/material/ListItemText"
 import Avatar from "@mui/material/Avatar"
 import IconButton from "@mui/material/IconButton"
 import Grid from "@mui/material/Grid"
-import CallIcon from "@mui/icons-material/Call"
-
 import users from "../../../content/users.json"
 import Section from "../../components/Section"
 import DriversTable from "../../components/DriversTable"
@@ -31,22 +29,23 @@ import { Button } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
 import { signedInUser } from "../../user"
+import EventListItem from "../../components/events/eventListItem"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
-  const [currentUserSignedUpStatus, setCurrentUserSignedUpStatus] =
-    useState(null)
+  const [signedInUserEventStatus, setSignedInUserEventStatus] = useState(null)
   const isOfferingRide = false
 
   const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
+
   const onSignUp = () => {
     setSignUpModalOpen(true)
   }
   const onSignUpSubmit = newStatus => {
-    setCurrentUserSignedUpStatus(newStatus)
+    setSignedInUserEventStatus(newStatus)
   }
 
-  const isSignedUp = currentUserSignedUpStatus !== null
+  const isSignedUp = signedInUserEventStatus !== null
 
   return (
     <Layout location={location}>
@@ -54,7 +53,7 @@ export default function EventDetailPage({ location, data }) {
         open={signUpModalOpen}
         setOpen={setSignUpModalOpen}
         onSubmit={onSignUpSubmit}
-        statusIn={currentUserSignedUpStatus}
+        statusIn={signedInUserEventStatus}
       />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
@@ -102,48 +101,16 @@ export default function EventDetailPage({ location, data }) {
         <Section title={"Prijavljeni"}>
           <List dense={false}>
             {users.map(user => (
-              <ListItem
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                    <CallIcon />
-                  </IconButton>
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar alt={user.name} src={user.imgSrc} />
-                </ListItemAvatar>
-                <ListItemText primary={user.name} secondary={user.level} />
-                <ListItemText
-                  primary={user.status}
-                  sx={{ textAlign: "start" }}
-                />
-              </ListItem>
+              <EventListItem user={user} />
             ))}
 
             {isSignedUp && (
-              <ListItem
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    sx={{ visibility: "hidden" }}
-                  >
-                    <CallIcon />
-                  </IconButton>
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar alt={signedInUser.name} src={signedInUser.imgSrc} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={signedInUser.name}
-                  secondary={signedInUser.level}
-                />
-                <ListItemText
-                  primary={currentUserSignedUpStatus}
-                  sx={{ textAlign: "start" }}
-                />
-              </ListItem>
+              <EventListItem
+                user={{
+                  ...signedInUser,
+                  status: { ...signedInUserEventStatus },
+                }}
+              />
             )}
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>

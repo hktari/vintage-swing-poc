@@ -18,12 +18,7 @@ import {
   Checkbox,
   Box,
 } from "@mui/material"
-
-type UserEventStatus = {
-  signedUp: boolean
-  lookingForRide: boolean
-  lookingForPartner: boolean
-}
+import { UserEventStatus } from "../../interface/User"
 
 type Props = {
   open: boolean
@@ -48,7 +43,7 @@ export default function SignUpModal({
   const [lookingForPartner, setLookingForPartner] = React.useState(
     statusIn?.lookingForPartner || false
   )
-  const isSignedUp = status !== null
+  const isSignedUp = !!status?.signedUp
 
   const handleClose = () => {
     setOpen(false)
