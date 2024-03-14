@@ -2,13 +2,21 @@
   {
     "imgSrc": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2561&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "name": "Živa",
-    "status": "iščem prevoz",
+    "status": {
+      "signedUp": true,
+      "lookingForRide": true,
+      "lookingForPartner": false
+    },
     "level": "LH2"
   },
   {
     "imgSrc": "https://images.unsplash.com/photo-1599566147214-ce487862ea4f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
     "name": "Luka",
-    "status": "iščem partnerja",
+    "status": {
+      "signedUp": true,
+      "lookingForRide": false,
+      "lookingForPartner": true
+    },
     "level": "LH1"
   }
 ]
