@@ -24,7 +24,7 @@ type Props = {
   open: boolean
   setOpen: (open: boolean) => void
   statusIn: UserEventStatus | null
-  onSubmit: (statusOut: UserEventStatus) => void
+  onSubmit: (statusOut: UserEventStatus | null) => void
 }
 
 export default function SignUpModal({
@@ -36,25 +36,20 @@ export default function SignUpModal({
   const theme = useTheme()
   //   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
 
-  const [status, setStatus] = React.useState(statusIn || null)
   const [lookingForRide, setLookingForRide] = React.useState(
     statusIn?.lookingForRide || false
   )
   const [lookingForPartner, setLookingForPartner] = React.useState(
     statusIn?.lookingForPartner || false
   )
-  const isSignedUp = !!status?.signedUp
+  const isSignedUp = !!statusIn
 
   const handleClose = () => {
     setOpen(false)
   }
 
   const handleSignOut = () => {
-    onSubmit({
-      signedUp: false,
-      lookingForRide,
-      lookingForPartner,
-    })
+    onSubmit(null)
     handleClose()
   }
 
