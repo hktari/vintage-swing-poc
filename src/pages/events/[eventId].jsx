@@ -30,30 +30,26 @@ import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
 import { signedInUser } from "../../user"
 import EventListItem from "../../components/events/eventListItem"
+import useModal from "../../hooks/useModal"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
-  const [signedInUserEventStatus, setSignedInUserEventStatus] = useState(null)
   const isOfferingRide = false
 
-  const [signUpModalOpen, setSignUpModalOpen] = React.useState(false)
-
   const onSignUp = () => {
-    setSignUpModalOpen(true)
+    signUpModal.setIsOpen(true)
   }
-  const onSignUpSubmit = newStatus => {
-    setSignedInUserEventStatus(newStatus)
-  }
+  const signUpModal = useModal()
 
-  const isSignedUp = signedInUserEventStatus !== null
+  const isSignedUp = signUpModal.context !== null
 
   return (
     <Layout location={location}>
       <SignUpModal
-        open={signUpModalOpen}
-        setOpen={setSignUpModalOpen}
-        onSubmit={onSignUpSubmit}
-        statusIn={signedInUserEventStatus}
+        open={signUpModal.isOpen}
+        setOpen={signUpModal.setIsOpen}
+        onSubmit={signUpModal.onSubmit}
+        statusIn={signUpModal.context}
       />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
@@ -108,7 +104,7 @@ export default function EventDetailPage({ location, data }) {
               <EventListItem
                 user={{
                   ...signedInUser,
-                  status: { ...signedInUserEventStatus },
+                  status: { ...signUpModal.context },
                 }}
                 hideCallAction
               />
