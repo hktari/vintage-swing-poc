@@ -110,6 +110,7 @@ export default function EventDetailPage({ location, data }) {
                   ...signedInUser,
                   status: { ...signedInUserEventStatus },
                 }}
+                hideCallAction
               />
             )}
           </List>

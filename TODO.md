@@ -2,17 +2,16 @@
 
 ## event detail page
 
-- hide signin user call button
+- hide signedin user call button
+- sign up button redirects to /login if not location.state.loggedIn
 - offer ride modal
 - *manager mode*
   - show edit button
   - show cancel button
 
-## manage page
+## manage dashboard
+- disabled add event button
 
-## new event page
-- pick image
-- 
 
 ## QR code into app
 

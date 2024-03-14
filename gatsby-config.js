@@ -51,7 +51,7 @@ module.exports = {
         name: `Vintage Swing`,
         short_name: `Vintage Swing`,
         start_url: `/`,
-        background_color: `#19857b`,
+        background_color: `#FFFFFF`,
         theme_color: `#556cd6`,
         display: `standalone`,
         icon: `src/images/icon.png`,
