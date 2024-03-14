@@ -12,12 +12,13 @@ import {
 } from "@mui/material"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
+import yn from "yn"
 import { dateAsString } from "../util/date"
 import HomePage from "../components/home/homePage"
 import ManagerPage from "../components/home/managerPage"
 
 const EventsPage = ({ location, data }) => {
-  const isManageMode = data.site.siteMetadata.managerMode
+  const isManageMode = yn(data.site.siteMetadata.managerMode)
   return (
     <Layout location={location}>
       {isManageMode ? (

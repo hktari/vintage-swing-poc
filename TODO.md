@@ -16,6 +16,7 @@
 - "PONUDI PREVOZ" gumb [OK]
 - "PRIJAVI SE" gumb / "UREDI PRIJAVO" gumb [OK]
 - sign up modal [OK]
+  - two checkboxes: iščem prevoz and iščem partnerja
 - _manager_: cancel event
 
 ## event sign up modal
