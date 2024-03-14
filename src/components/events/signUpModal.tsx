@@ -13,14 +13,22 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Box,
 } from "@mui/material"
 
-type UserEventStatus = string | null
+type UserEventStatus = {
+  signedUp: boolean
+  lookingForRide: boolean
+  lookingForPartner: boolean
+}
 
 type Props = {
   open: boolean
   setOpen: (open: boolean) => void
-  statusIn: UserEventStatus
+  statusIn: UserEventStatus | null
   onSubmit: (statusOut: UserEventStatus) => void
 }
 
@@ -33,27 +41,26 @@ export default function SignUpModal({
   const theme = useTheme()
   //   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
 
-  const selections = ["pridem", "iščem prevoz", "iščem partnerja"]
-  const [status, setStatus] = React.useState(statusIn || selections[0])
-
+  const [status, setStatus] = React.useState(statusIn || null)
+  const [lookingForRide, setLookingForRide] = React.useState(
+    statusIn?.lookingForRide || false
+  )
+  const [lookingForPartner, setLookingForPartner] = React.useState(
+    statusIn?.lookingForPartner || false
+  )
   const isSignedUp = status !== null
-  
+
   const handleClose = () => {
     setOpen(false)
   }
 
   const handleSignOut = () => {
-    onSubmit(null)
+    onSubmit({
+      signedUp: false,
+      lookingForRide,
+      lookingForPartner,
+    })
     handleClose()
-  }
-
-  const handleChange = (ev: SelectChangeEvent<UserEventStatus>) => {
-    console.log("value", ev.target.value)
-    setStatus(ev.target.value as string)
-  }
-
-  const MenuItems = () => {
-    return <></>
   }
 
   return (
@@ -66,11 +73,11 @@ export default function SignUpModal({
           component: "form",
           onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault()
-            const formData = new FormData(event.currentTarget)
-            const formJson = Object.fromEntries((formData as any).entries())
-            console.log(formJson.status)
-
-            onSubmit(formJson.status)
+            onSubmit({
+              signedUp: true,
+              lookingForPartner,
+              lookingForRide,
+            })
             handleClose()
           },
         }}
@@ -79,25 +86,33 @@ export default function SignUpModal({
           {"Prijava na dogodek"}
         </DialogTitle>
         <DialogContent>
-          <FormControl fullWidth>
-            <Select
-              id="status"
-              name="status"
-              value={status}
-              onChange={handleChange}
-            >
-              {selections.map((selection, idx) => {
-                return (
-                  <MenuItem key={idx} value={selection}>
-                    {selection}
-                  </MenuItem>
-                )
-              })}
-            </Select>
-          </FormControl>{" "}
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  defaultChecked
+                  onChange={ev => setLookingForRide(ev.target.checked)}
+                />
+              }
+              label="Iščem prevoz"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  defaultChecked
+                  onChange={ev => setLookingForPartner(ev.target.checked)}
+                />
+              }
+              label="Iščem partnerja"
+            />
+          </FormGroup>
         </DialogContent>
         <DialogActions>
-          {isSignedUp && <Button onClick={handleSignOut}>Odjava</Button>}
+          {isSignedUp && (
+            <Button sx={{ me: 2 }} onClick={handleSignOut}>
+              Odjava
+            </Button>
+          )}
           <Button type="submit" variant="contained">
             Potrdi
           </Button>
