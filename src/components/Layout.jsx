@@ -1,9 +1,4 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
- */
+import "../i18"
 
 import { useStaticQuery, graphql, Link } from "gatsby"
 
