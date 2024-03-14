@@ -28,11 +28,7 @@ const Header = ({ siteTitle, location }) => {
           height: "75px",
         }}
       >
-        {topLevelLocation ? (
-          <IconButton aria-label="side menu" color="primary" size="large">
-            <MenuIcon sx={{ color: "primary.contrastText" }} />
-          </IconButton>
-        ) : (
+        {!topLevelLocation && (
           <IconButton aria-label="navigate back" onClick={onNavigateBack}>
             <ArrowBackIosIcon sx={{ color: "primary.contrastText" }} />
           </IconButton>
