@@ -86,6 +86,7 @@ export default function SignUpModal({
               control={
                 <Checkbox
                   defaultChecked
+                  checked={lookingForRide}
                   onChange={ev => setLookingForRide(ev.target.checked)}
                 />
               }
@@ -95,6 +96,7 @@ export default function SignUpModal({
               control={
                 <Checkbox
                   defaultChecked
+                  checked={lookingForPartner}
                   onChange={ev => setLookingForPartner(ev.target.checked)}
                 />
               }
