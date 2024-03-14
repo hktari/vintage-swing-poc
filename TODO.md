@@ -1,56 +1,40 @@
 # TODO
 
-## add header [OK]
-
-- add logo
-- add back navigation
-
-## events page [ok]
-
-- list of events
--
-
 ## event detail page
 
-- dodaj slikco [OK]
-- "PONUDI PREVOZ" gumb [OK]
-- "PRIJAVI SE" gumb / "UREDI PRIJAVO" gumb [OK]
-- sign up modal [OK]
-  - two checkboxes: iščem prevoz and iščem partnerja [OK]
--hide signin user call button
-- _manager_: cancel event
+- hide signin user call button
+- offer ride modal
+- *manager mode*
+  - show edit button
+  - show cancel button
 
-## event sign up modal
-
-- "nastavi svoj status" selector [OK]
-- ponujaš prevoz ?
--
-
-## add footer
-
-- switch between profile and events tab [OK]
-
-## add profile page
-
-- select level [NO]
-- select lead / follower [OK]
-
-## add manage page
-
-- users section
-  - confirm new users identity [OK]
-- events section [OK]
-  - add event [OK]
-  - edit [NO]
+## manage page
 
 ## new event page
-
+- pick image
+- 
 
 ## QR code into app
 
-- as user
-- as manager
+- as user [OK]
 
+## Other
+- configure favicon [ok]
 
 ## Install App
-- vintage icon
+- configure PWA [OK]
+- vintage icon [OK]
+
+
+## FLOW
+### USER
+1. scan qr code
+2. see event
+3. login
+4. sign up for event
+  
+### MANAGER
+1. open app installed to mobile phone
+2. approve/reject users
+3. look at event management
+4. look at event creation
