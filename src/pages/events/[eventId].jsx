@@ -31,17 +31,19 @@ import { useState } from "react"
 import { signedInUser } from "../../user"
 import EventListItem from "../../components/events/eventListItem"
 import useModal from "../../hooks/useModal"
+import OfferRideModal from "../../components/events/offerRideModal"
 
 export default function EventDetailPage({ location, data }) {
   const event = data.event
-  const isOfferingRide = false
 
   const onSignUp = () => {
     signUpModal.setIsOpen(true)
   }
   const signUpModal = useModal()
+  const offerRideModal = useModal()
 
   const isSignedUp = signUpModal.context !== null
+  const isOfferingRide = offerRideModal.context !== null
 
   return (
     <Layout location={location}>
@@ -50,6 +52,12 @@ export default function EventDetailPage({ location, data }) {
         setOpen={signUpModal.setIsOpen}
         onSubmit={signUpModal.onSubmit}
         statusIn={signUpModal.context}
+      />
+      <OfferRideModal
+        open={offerRideModal.isOpen}
+        setOpen={offerRideModal.setIsOpen}
+        onSubmit={offerRideModal.onSubmit}
+        statusIn={offerRideModal.context}
       />
       <Container maxWidth="sm" sx={{ pb: 2 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
@@ -112,7 +120,6 @@ export default function EventDetailPage({ location, data }) {
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button
-              sx={{ fontWeight: "bold" }}
               variant={isSignedUp ? "outlined" : "contained"}
               onClick={onSignUp}
             >
@@ -124,7 +131,10 @@ export default function EventDetailPage({ location, data }) {
         <Section title={"Prevozi"}>
           <DriversTable />
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button variant="outlined">
+            <Button
+              variant="contained"
+              onClick={() => offerRideModal.setIsOpen(true)}
+            >
               {isOfferingRide ? "Uredi Prevoz" : "Ponudi Prevoz"}{" "}
             </Button>
           </Box>
