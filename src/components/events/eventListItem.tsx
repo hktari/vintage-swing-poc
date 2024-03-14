@@ -8,7 +8,7 @@ import {
 import React from "react"
 
 import CallIcon from "@mui/icons-material/Call"
-import User from "../../interface/User"
+import User, { UserEventStatus } from "../../interface/User"
 
 type Props = {
   user: User
@@ -32,12 +32,13 @@ const EventListItem = ({ user, hideCallAction = false }: Props) => {
         <Avatar alt={user.name} src={user.imgSrc} />
       </ListItemAvatar>
       <ListItemText primary={user.name} secondary={user.level} />
-      {user.status.lookingForRide && (
-        <ListItemText primary="iščem prevoz" sx={{ textAlign: "start" }} />
-      )}
-      {user.status.lookingForPartner && (
-        <ListItemText primary="iščem partnerja" sx={{ textAlign: "start" }} />
-      )}
+      <ListItemText
+        primary={user.status.lookingForRide ? "iščem prevoz" : ""}
+        primaryTypographyProps={{ variant: "body2" }}
+        secondaryTypographyProps={{ variant: "body2", color: "black" }}
+        secondary={user.status.lookingForPartner ? "iščem partnerja" : ""}
+        sx={{ textAlign: "start" }}
+      />
     </ListItem>
   )
 }
