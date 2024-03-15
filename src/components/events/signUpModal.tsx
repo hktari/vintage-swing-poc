@@ -37,10 +37,10 @@ export default function SignUpModal({
   //   const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
 
   const [lookingForRide, setLookingForRide] = React.useState(
-    statusIn?.lookingForRide || false
+    statusIn?.lookingForRide || true
   )
   const [lookingForPartner, setLookingForPartner] = React.useState(
-    statusIn?.lookingForPartner || false
+    statusIn?.lookingForPartner || true
   )
   const isSignedUp = !!statusIn
 
