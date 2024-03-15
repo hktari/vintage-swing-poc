@@ -89,6 +89,9 @@ export default function OfferRideModal({
                 disabled
                 views={["year", "month", "day"]}
               />
+
+              {/* TODO: add time start and end time pickers */}
+              {/* TODO: add št prostim mest number picker */}
             </FormGroup>
           </LocalizationProvider>
         </DialogContent>
