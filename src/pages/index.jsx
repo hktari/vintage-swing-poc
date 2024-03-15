@@ -17,16 +17,16 @@ import { dateAsString } from "../util/date"
 import HomePage from "../components/home/homePage"
 import ManagerPage from "../components/home/managerPage"
 
-const EventsPage = ({ location, data }) => {
+const EventsPage = ({ location, data, isLoggedIn }) => {
   const isManageMode = yn(data.site.siteMetadata.managerMode)
   return (
-    <Layout location={location}>
+    <>
       {isManageMode ? (
-        <ManagerPage location={location} data={data} />
+        <ManagerPage location={location} data={data} isLoggedIn={isLoggedIn} />
       ) : (
-        <HomePage location={location} data={data} />
+        <HomePage location={location} data={data} isLoggedIn={isLoggedIn}/>
       )}
-    </Layout>
+    </>
   )
 }
 

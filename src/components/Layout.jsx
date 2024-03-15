@@ -59,6 +59,9 @@ const theme = createTheme({
 })
 
 const Layout = ({ children, location }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const login = () => setIsLoggedIn(true)
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -71,7 +74,6 @@ const Layout = ({ children, location }) => {
   `)
 
   const { managerMode } = data.site.siteMetadata
-  const isLoggedIn = location.state?.isLoggedIn
 
   const isEventsTab =
     location?.pathname === "/" || location?.pathname.includes("events")
@@ -92,7 +94,11 @@ const Layout = ({ children, location }) => {
         />
 
         <Box sx={{ pb: 7 }}>
-          <main>{children}</main>
+          <main>
+            {React.Children.map(children, child =>
+              React.cloneElement(child, { ...child.props, login, isLoggedIn })
+            )}
+          </main>
         </Box>
         <Paper
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}

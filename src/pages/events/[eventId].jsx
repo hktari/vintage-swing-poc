@@ -35,10 +35,8 @@ import OfferRideModal from "../../components/events/offerRideModal"
 
 import { navigate } from "gatsby"
 
-export default function EventDetailPage({ location, data }) {
+export default function EventDetailPage({ location, data, isLoggedIn }) {
   const event = data.event
-
-  const isLoggedIn = location.state?.isLoggedIn
 
   const onSignUp = () => {
     signUpModal.setIsOpen(true)
@@ -50,7 +48,7 @@ export default function EventDetailPage({ location, data }) {
   const isOfferingRide = offerRideModal.context !== null
 
   return (
-    <Layout location={location}>
+    <>
       <SignUpModal
         open={signUpModal.isOpen}
         setOpen={signUpModal.setIsOpen}
@@ -151,7 +149,7 @@ export default function EventDetailPage({ location, data }) {
           </Box>
         </Section>
       </Container>
-    </Layout>
+    </>
   )
 }
 
