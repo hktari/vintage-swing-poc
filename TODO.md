@@ -1,32 +1,57 @@
+# ARCHITECTURE 
+
+### FRONTEND
+- SSG + client only routes for logged in section
+### BACKEND
+- user authentication via social 3rdparty oauth
+  - https://www.npmjs.com/package/@react-oauth/google
+- CRUD REST api NestJS / express
+  - /events
+  - /auth
+  - /profile
+  - /users/{id}
+  - /event/{id}/transport
+  - /event/{id}/users
+  - **MANAGER**
+    - /events/new
+    - /users
+    - /approval-requests
+    - /approval-requests/confirm
+    - /approval-requests/reject
+
+### DATA
+- postgres db
+- users, events, transport, 
+- events data
+- user avatar and event images
+  
+### HOSTING
+- https://railway.app/pricing
+- https://render.com/pricing#compute 35$ ~
+
+
 # TODO
 
-## event detail page
+## QR CODE
+- A4 with title, QR code and subtitle
 
-- hide signed in user call button [ok]
+## event detail page
 - offer ride modal
 - sign up button redirects to /login if not location.state.loggedIn
 - _manager mode_
   - show edit button
   - show cancel button
 
+## login
+- email and password fields
+- remove iOS sign in
+- 
+
 ## manage dashboard
 
 - disabled add event button
 
-## QR code into app
-
-- as user [OK]
-
-## Other
-
-- configure favicon [ok]
-
-## Install App
-
-- configure PWA [OK]
-- vintage icon [OK]
-
-## FLOW
+## SCENARIO
 
 ### USER
 
