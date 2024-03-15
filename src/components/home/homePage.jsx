@@ -11,8 +11,13 @@ import {
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import { dateAsString } from "../../util/date"
 import EventListItem from "./eventListItem"
+import { navigate } from "gatsby"
 
 const HomePage = ({ location, data }) => {
+  const onEventListItemClick = event => {
+    navigate(`/events/${event.id}`, { state: { ...location.state } })
+  }
+
   return (
     <Container sx={{ px: 2, py: 4 }}>
       <Typography variant="h4" component="h1">
@@ -20,7 +25,11 @@ const HomePage = ({ location, data }) => {
       </Typography>
       <List>
         {data.allEventsJson.edges.map(edge => (
-          <EventListItem key={edge.node.id} event={edge.node} />
+          <EventListItem
+            key={edge.node.id}
+            event={edge.node}
+            onButtonClick={onEventListItemClick}
+          />
         ))}
       </List>
     </Container>

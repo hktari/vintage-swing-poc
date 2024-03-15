@@ -58,7 +58,7 @@ const ManagerPage = ({ location, data }) => {
   }
 
   const onEventListItemClick = event => {
-    navigate(`/events/${event.id}`, { ...location.state })
+    navigate(`/events/${event.id}`, { state: { ...location.state } })
   }
 
   return (

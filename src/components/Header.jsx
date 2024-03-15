@@ -12,7 +12,7 @@ const Header = ({ siteTitle, location }) => {
   const topLevelLocation = !location.pathname.match(matchNestedUri)
 
   const onNavigateBack = () => {
-    navigate("/")
+    navigate("/", { state: { ...location.state } })
   }
 
   return (

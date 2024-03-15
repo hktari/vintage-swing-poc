@@ -71,7 +71,7 @@ const Login = ({ location }) => {
               autoComplete="off"
               onSubmit={ev => {
                 ev.preventDefault()
-                navigate(-1)
+                onLogin()
               }}
             >
               <TextField
