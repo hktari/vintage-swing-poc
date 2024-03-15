@@ -71,6 +71,7 @@ const Layout = ({ children, location }) => {
   `)
 
   const { managerMode } = data.site.siteMetadata
+  const isLoggedIn = location.state?.isLoggedIn
 
   const isEventsTab =
     location?.pathname === "/" || location?.pathname.includes("events")
@@ -104,12 +105,14 @@ const Layout = ({ children, location }) => {
               label="Dogodki"
               icon={<GroupsIcon />}
             />
-            <BottomNavigationAction
-              value={1}
-              href="/profile"
-              label="Račun"
-              icon={<AccountCircleIcon />}
-            />
+            {isLoggedIn && (
+              <BottomNavigationAction
+                value={1}
+                href="/profile"
+                label="Račun"
+                icon={<AccountCircleIcon />}
+              />
+            )}
           </BottomNavigation>
         </Paper>
       </Box>

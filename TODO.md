@@ -37,14 +37,14 @@
 
 ## event detail page
 - offer ride modal
-- sign up button redirects to /login if not location.state.loggedIn
+- sign up button redirects to /login if not location.state.loggedIn[ok]
 - _manager mode_
   - show edit button
   - show cancel button
 
 ## login
-- email and password fields
-- remove iOS sign in
+- email and password fields[ok]
+- remove iOS sign in[ok]
 
 ## manage dashboard
 
