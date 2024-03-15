@@ -22,6 +22,7 @@ import {
 } from "@mui/material"
 import EventListItem from "./eventListItem"
 import ConfirmChoiceDialog from "../modal/confirmChoiceDialog"
+import { navigate } from "gatsby"
 
 const ManagerPage = ({ location, data }) => {
   const [users, setUsers] = useState(usersInitial)
@@ -54,6 +55,10 @@ const ManagerPage = ({ location, data }) => {
     }
     setConfirmationDialogContext(null)
     setConfirmationDialogOpen(false)
+  }
+
+  const onEventListItemClick = event => {
+    navigate(`/events/${event.id}`, { ...location.state })
   }
 
   return (
@@ -127,13 +132,19 @@ const ManagerPage = ({ location, data }) => {
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>
           {data.allEventsJson.edges.map(edge => (
             <React.Fragment>
-              <EventListItem key={edge.node.id} event={edge.node} />
+              <EventListItem
+                key={edge.node.id}
+                event={edge.node}
+                onButtonClick={onEventListItemClick}
+              />
               <Divider variant="inset" component="li" />
             </React.Fragment>
           ))}
         </List>
         <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Button disabled variant="contained">Nov Dogodek</Button>
+          <Button disabled variant="contained">
+            Nov Dogodek
+          </Button>
         </Box>
       </Box>
     </Container>

@@ -19,20 +19,23 @@ import GoogleIcon from "@mui/icons-material/Google"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import AppleIcon from "@mui/icons-material/Apple"
 import Link from "../components/Link"
+import { navigate } from "gatsby"
 
 const Login = ({ location }) => {
   const SocialLoginListItem = ({ icon, text, onClick }) => (
-    <Link to="/" underline="none" color="inherit">
-      <ListItem disablePadding>
-        <ListItemButton onClick={onClick}>
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText>{text}</ListItemText>
-        </ListItemButton>
-      </ListItem>
-    </Link>
+    <ListItem disablePadding>
+      <ListItemButton onClick={onClick}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText>{text}</ListItemText>
+      </ListItemButton>
+    </ListItem>
   )
 
-  const onSocialClickHandler = () => {}
+  const onLogin = () => {
+    navigate("/events/2F537FEB-766A-468E-A7C7-A0A0E69CA8A2/", {
+      state: { isLoggedIn: true },
+    })
+  }
 
   return (
     <Layout location={location}>
@@ -50,7 +53,7 @@ const Login = ({ location }) => {
             sx={{
               py: 1,
               px: 2,
-              mt: 4,
+              mt: 3,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -66,18 +69,30 @@ const Login = ({ location }) => {
               }}
               noValidate
               autoComplete="off"
+              onSubmit={ev => {
+                ev.preventDefault()
+                navigate(-1)
+              }}
             >
               <TextField
                 label="Email"
                 id="outlined-size-normal"
-                defaultValue=""
+                type="email"
+                defaultValue="janez.novak@mail.com"
               />
               <TextField
                 label="Geslo"
                 id="outlined-size-normal"
-                defaultValue=""
+                hidden
+                type="password"
+                defaultValue="secret"
               />
-              <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+              <Button
+                size="large"
+                type="submit"
+                variant="contained"
+                sx={{ mt: 2 }}
+              >
                 Vpis
               </Button>
             </Box>{" "}
@@ -85,10 +100,12 @@ const Login = ({ location }) => {
               <SocialLoginListItem
                 icon={<GoogleIcon />}
                 text={"Vpis z Google"}
+                onClick={onLogin}
               />
               <SocialLoginListItem
                 icon={<FacebookIcon />}
                 text={"Vpis z Facebook"}
+                onClick={onLogin}
               />
             </List>
           </Paper>

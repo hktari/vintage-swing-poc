@@ -33,8 +33,12 @@ import EventListItem from "../../components/events/eventListItem"
 import useModal from "../../hooks/useModal"
 import OfferRideModal from "../../components/events/offerRideModal"
 
+import { navigate } from "gatsby"
+
 export default function EventDetailPage({ location, data }) {
   const event = data.event
+
+  const isLoggedIn = location.state?.isLoggedIn
 
   const onSignUp = () => {
     signUpModal.setIsOpen(true)
@@ -119,12 +123,18 @@ export default function EventDetailPage({ location, data }) {
             )}
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button
-              variant={isSignedUp ? "outlined" : "contained"}
-              onClick={onSignUp}
-            >
-              {isSignedUp ? "Uredi Prijavo" : "Prijavi se"}
-            </Button>
+            {isLoggedIn ? (
+              <Button
+                variant={isSignedUp ? "outlined" : "contained"}
+                onClick={onSignUp}
+              >
+                {isSignedUp ? "Uredi Prijavo" : "Prijavi se"}
+              </Button>
+            ) : (
+              <Button variant="contained" onClick={() => navigate("/login")}>
+                Vpiši se
+              </Button>
+            )}
           </Box>
         </Section>
 
@@ -132,6 +142,7 @@ export default function EventDetailPage({ location, data }) {
           <DriversTable />
           <Box sx={{ textAlign: "center", mt: 2 }}>
             <Button
+              disabled={!isLoggedIn}
               variant="contained"
               onClick={() => offerRideModal.setIsOpen(true)}
             >
