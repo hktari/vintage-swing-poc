@@ -59,9 +59,6 @@ const theme = createTheme({
 })
 
 const Layout = ({ children, location }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const login = () => setIsLoggedIn(true)
-
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -74,6 +71,9 @@ const Layout = ({ children, location }) => {
   `)
 
   const { managerMode } = data.site.siteMetadata
+
+  const [isLoggedIn, setIsLoggedIn] = useState(managerMode) // logged in automatically when manager mode
+  const login = () => setIsLoggedIn(true)
 
   const isEventsTab =
     location?.pathname === "/" || location?.pathname.includes("events")
