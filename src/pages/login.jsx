@@ -1,4 +1,6 @@
 import React from "react"
+
+import Divider from "@mui/material/Divider"
 import Layout from "../components/Layout"
 import {
   Container,
@@ -8,15 +10,17 @@ import {
   List,
   ListItemText,
   ListItemButton,
+  TextField,
   Typography,
   Box,
+  Button,
 } from "@mui/material"
 import GoogleIcon from "@mui/icons-material/Google"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import AppleIcon from "@mui/icons-material/Apple"
 import Link from "../components/Link"
 
-const Login = () => {
+const Login = ({ location }) => {
   const SocialLoginListItem = ({ icon, text, onClick }) => (
     <Link to="/" underline="none" color="inherit">
       <ListItem disablePadding>
@@ -31,25 +35,66 @@ const Login = () => {
   const onSocialClickHandler = () => {}
 
   return (
-    <Container sx={{ height: "100vh" }}>
-      <Box
-        sx={{ height: "100%", py: 5, px: 4 }}
-        display="flex"
-        flexDirection="column"
-        justifyContent="start"
-      >
-        <Typography variant="h4" textAlign={"center"}>
-          Login
-        </Typography>
-        <Paper sx={{ py: 1, px: 2, mt: 4 }}>
-          <List dense={false}>
-            <SocialLoginListItem icon={<GoogleIcon />} text={"Google"} />
-            <SocialLoginListItem icon={<AppleIcon />} text={"Apple"} />
-            <SocialLoginListItem icon={<FacebookIcon />} text={"Facebook"} />
-          </List>
-        </Paper>
-      </Box>
-    </Container>
+    <Layout location={location}>
+      <Container sx={{ height: "100vh" }}>
+        <Box
+          sx={{ height: "100%", py: 5, px: 4 }}
+          display="flex"
+          flexDirection="column"
+          justifyContent="start"
+        >
+          <Typography variant="h4" textAlign={"center"}>
+            Login
+          </Typography>
+          <Paper
+            sx={{
+              py: 1,
+              px: 2,
+              mt: 4,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+            }}
+          >
+            <Box
+              component="form"
+              sx={{
+                "& .MuiTextField-root": { m: 1 },
+                display: "flex",
+                flexDirection: "column",
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                label="Email"
+                id="outlined-size-normal"
+                defaultValue=""
+              />
+              <TextField
+                label="Geslo"
+                id="outlined-size-normal"
+                defaultValue=""
+              />
+              <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+                Vpis
+              </Button>
+            </Box>{" "}
+            <List dense={false} sx={{ mt: 2 }}>
+              <SocialLoginListItem
+                icon={<GoogleIcon />}
+                text={"Vpis z Google"}
+              />
+              <SocialLoginListItem
+                icon={<FacebookIcon />}
+                text={"Vpis z Facebook"}
+              />
+            </List>
+          </Paper>
+        </Box>
+      </Container>
+    </Layout>
   )
 }
 

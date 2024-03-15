@@ -133,7 +133,7 @@ const ManagerPage = ({ location, data }) => {
           ))}
         </List>
         <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Button variant="contained">Nov Dogodek</Button>
+          <Button disabled variant="contained">Nov Dogodek</Button>
         </Box>
       </Box>
     </Container>

@@ -45,11 +45,10 @@
 ## login
 - email and password fields
 - remove iOS sign in
-- 
 
 ## manage dashboard
 
-- disabled add event button
+- disabled add event button [OK]
 
 ## SCENARIO
 
