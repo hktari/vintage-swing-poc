@@ -24,8 +24,7 @@ import Section from "../../components/Section"
 import DriversTable from "../../components/DriversTable"
 import { dateAsString } from "../../util/date"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { graphql } from "gatsby"
-import { Button } from "@mui/material"
+import { Button, Stack } from "@mui/material"
 import SignUpModal from "../../components/events/signUpModal"
 import { useState } from "react"
 import { signedInUser } from "../../user"
@@ -33,9 +32,12 @@ import EventListItem from "../../components/events/eventListItem"
 import useModal from "../../hooks/useModal"
 import OfferRideModal from "../../components/events/offerRideModal"
 
+import { graphql, useStaticQuery } from "gatsby"
 import { navigate } from "gatsby"
 
 export default function EventDetailPage({ location, data, isLoggedIn }) {
+  const { managerMode } = data.site.siteMetadata
+
   const event = data.event
 
   const onSignUp = () => {
@@ -61,11 +63,12 @@ export default function EventDetailPage({ location, data, isLoggedIn }) {
         onSubmit={offerRideModal.onSubmit}
         statusIn={offerRideModal.context}
       />
-      <Container maxWidth="sm" sx={{ pb: 2 }}>
+      <Container maxWidth="sm" sx={{ pb: 4 }}>
         <GatsbyImage image={data.eventImage?.gatsbyImageData} />
         <Typography variant="h4" component="h1" sx={{ mt: 4 }}>
           {event.title}
         </Typography>
+
         <TableContainer component={Paper} sx={{ mt: 2 }}>
           <Table aria-label="simple table">
             <TableBody>
@@ -103,6 +106,12 @@ export default function EventDetailPage({ location, data, isLoggedIn }) {
         <Box sx={{ mt: 4 }}>
           <Typography variant="body">{event.description}</Typography>
         </Box>
+        {managerMode && (
+          <Stack sx={{ mt: 3 }} spacing={2} justifyContent={"end"}>
+            <Button variant="outlined">Edit Event</Button>
+            <Button variant="text">Cancel Event</Button>
+          </Stack>
+        )}
 
         <Section title={"Prijavljeni"}>
           <List dense={false}>
@@ -138,12 +147,8 @@ export default function EventDetailPage({ location, data, isLoggedIn }) {
 
         <Section title={"Prevozi"}>
           <DriversTable />
-          <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button
-              disabled={!isLoggedIn}
-              variant="contained"
-              onClick={() => offerRideModal.setIsOpen(true)}
-            >
+          <Box sx={{ textAlign: "center", mt: 3 }}>
+            <Button disabled={!isLoggedIn} variant="contained">
               {isOfferingRide ? "Uredi Prevoz" : "Ponudi Prevoz"}{" "}
             </Button>
           </Box>
@@ -155,6 +160,12 @@ export default function EventDetailPage({ location, data, isLoggedIn }) {
 
 export const query = graphql`
   query EventDetailPage($imageName: String, $eventId: String) {
+    site {
+      siteMetadata {
+        title
+        managerMode
+      }
+    }
     eventImage: imageSharp(fluid: { originalName: { eq: $imageName } }) {
       id
       gatsbyImageData(height: 350)
